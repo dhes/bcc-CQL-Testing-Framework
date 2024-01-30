@@ -4,7 +4,7 @@ name: Mammogram up to date
 data:
 -
   resourceType: Patient
-  # id: up-to-date
+  id: up-to-date
   # meta:
   #   profile:
   #   - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
@@ -39,12 +39,12 @@ data:
   deceasedBoolean: false
 -
   resourceType: Encounter
-# id: up-to-date-encounter
+  id: up-to-date-encounter
   meta:
     profile:
     - http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter
-  # subject:
-  #   reference: Patient/up-to-date
+  subject:
+    reference: Patient/up-to-date
   status: finished
   class:
     code: AMB
@@ -57,42 +57,6 @@ data:
   period:
     start: '2022-05-30T00:00:00-00:00'
     end: '2022-05-31T00:00:00-00:00'
-# -
-#   resourceType: GuidanceResponse
-#   # id: up-to-date-guidanceresponse
-#   contained:
-#   - resourceType: CarePlan
-#     id: expected
-#     instantiatesCanonical:
-#     - http://fhir.org/guides/cqf/bcc/PlanDefinition/BreastCancerScreeningCDS
-#     status: draft
-#     intent: proposal
-#     # subject:
-#     #   reference: Patient/up-to-date
-#     activity:
-#     - reference:
-#         reference: "#screening-not-recommended"
-#   - resourceType: ServiceRequest
-#     id: screening-not-recommended
-#     extension:
-#     - url: http://hl7.org/fhir/uv/cpg/StructureDefinition/cpg-rationale
-#       valueMarkdown: This patient had a mammogram less that two years ago. The date
-#         of her most recent mammogram was 2024-01-01
-#     status: draft
-#     intent: proposal
-#     doNotPerform: true
-#     code:
-#       text: 'Up to date. '
-#     # subject:
-#     #   reference: Patient/up-to-date
-#     # supportingInfo:
-#     # - reference: Observation/up-to-date-mammogram
-#   moduleCanonical: http://fhir.org/guides/cqf/bcc/PlanDefinition/BreastCancerScreeningCDS
-#   status: success
-#   # subject:
-#   #   reference: Patient/up-to-date
-#   result:
-#     reference: "#expected"
 -
   resourceType: Observation
   # id: up-to-date-cxr
@@ -118,8 +82,8 @@ data:
       system: http://loinc.org
       display: Radiology Study observation (narrative)
     text: Findings
-  # subject:
-  #   reference: Patient/up-to-date
+  subject:
+    reference: Patient/up-to-date
   effectiveDateTime: '2019-02-03T19:43:30.000Z'
   issued: '2019-02-03T19:43:30.000Z'
   valueString: 'LINES AND TUBES: None.\n LUNGS AND PLEURA:\n Clear lungs. Normal pulmonary
@@ -151,8 +115,8 @@ data:
       system: http://loinc.org
       display: MG Breast Screening
     text: MG Breast Screening
-  # subject:
-  #   reference: Patient/up-to-date
+  subject:
+    reference: Patient/up-to-date
   effectiveDateTime: '2024-01-01T00:00:00+00:00'
   issued: '2024-01-01T00:00:00+00:00'
   valueCodeableConcept:
