@@ -36,39 +36,16 @@
       },
       "parameters" : {
          "def" : [ {
-            "name" : "Measurement Period",
+            "name" : "Null Patient.deceased assumed to mean alive",
             "accessLevel" : "Public",
             "default" : {
-               "lowClosed" : true,
-               "highClosed" : true,
-               "type" : "Interval",
-               "low" : {
-                  "type" : "Subtract",
-                  "signature" : [ {
-                     "name" : "{urn:hl7-org:elm-types:r1}DateTime",
-                     "type" : "NamedTypeSpecifier"
-                  }, {
-                     "name" : "{urn:hl7-org:elm-types:r1}Quantity",
-                     "type" : "NamedTypeSpecifier"
-                  } ],
-                  "operand" : [ {
-                     "type" : "Now"
-                  }, {
-                     "value" : 2,
-                     "unit" : "years",
-                     "type" : "Quantity"
-                  } ]
-               },
-               "high" : {
-                  "type" : "Now"
-               }
+               "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+               "value" : "false",
+               "type" : "Literal"
             },
             "parameterTypeSpecifier" : {
-               "type" : "IntervalTypeSpecifier",
-               "pointType" : {
-                  "name" : "{urn:hl7-org:elm-types:r1}DateTime",
-                  "type" : "NamedTypeSpecifier"
-               }
+               "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+               "type" : "NamedTypeSpecifier"
             }
          } ]
       },
@@ -90,12 +67,217 @@
                }
             }
          }, {
+            "name" : "Alive",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Case",
+               "caseItem" : [ {
+                  "when" : {
+                     "type" : "Equal",
+                     "signature" : [ {
+                        "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "type" : "NamedTypeSpecifier"
+                     }, {
+                        "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "type" : "NamedTypeSpecifier"
+                     } ],
+                     "operand" : [ {
+                        "name" : "ToBoolean",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}boolean",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "deceased",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "Patient",
+                                 "type" : "ExpressionRef"
+                              }
+                           }
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                        "value" : "false",
+                        "type" : "Literal"
+                     } ]
+                  },
+                  "then" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "value" : "true",
+                     "type" : "Literal"
+                  }
+               }, {
+                  "when" : {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "Equal",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "Null Patient.deceased assumed to mean alive",
+                           "type" : "ParameterRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "value" : "true",
+                           "type" : "Literal"
+                        } ]
+                     }, {
+                        "type" : "IsNull",
+                        "operand" : {
+                           "path" : "deceased",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "Patient",
+                              "type" : "ExpressionRef"
+                           }
+                        }
+                     } ]
+                  },
+                  "then" : {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "value" : "true",
+                     "type" : "Literal"
+                  }
+               } ],
+               "else" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "false",
+                  "type" : "Literal"
+               }
+            }
+         }, {
+            "name" : "Active",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Equal",
+               "signature" : [ {
+                  "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "NamedTypeSpecifier"
+               }, {
+                  "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "NamedTypeSpecifier"
+               } ],
+               "operand" : [ {
+                  "name" : "ToBoolean",
+                  "libraryName" : "FHIRHelpers",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "path" : "active",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "Patient",
+                        "type" : "ExpressionRef"
+                     }
+                  } ]
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "true",
+                  "type" : "Literal"
+               } ]
+            }
+         }, {
+            "name" : "Woman",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Woman",
+               "libraryName" : "BCE",
+               "type" : "ExpressionRef"
+            }
+         }, {
             "name" : "Age",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
                "precision" : "Year",
-               "type" : "CalculateAgeAt",
+               "type" : "CalculateAge",
+               "signature" : [ {
+                  "name" : "{urn:hl7-org:elm-types:r1}Date",
+                  "type" : "NamedTypeSpecifier"
+               } ],
+               "operand" : {
+                  "path" : "birthDate.value",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "Patient",
+                     "type" : "ExpressionRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "Woman aged 50 to 74 years inclusive",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "name" : "Woman",
+                  "libraryName" : "BCE",
+                  "type" : "ExpressionRef"
+               }, {
+                  "name" : "aged 50 to 74 years inclusive",
+                  "libraryName" : "BCE",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "History of bilateral mastectomy",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Bilateral Mastectomy Performed",
+               "libraryName" : "BCE",
+               "type" : "ExpressionRef"
+            }
+         }, {
+            "name" : "Excluded",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "History of bilateral mastectomy",
+               "type" : "ExpressionRef"
+            }
+         }, {
+            "name" : "Most recent mammogram",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "DateFrom",
+               "operand" : {
+                  "name" : "ToDateTime",
+                  "libraryName" : "FHIRHelpers",
+                  "type" : "FunctionRef",
+                  "signature" : [ {
+                     "name" : "{http://hl7.org/fhir}instant",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "path" : "issued",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "Most Recent Mammogram",
+                        "libraryName" : "BCE",
+                        "type" : "ExpressionRef"
+                     }
+                  } ]
+               }
+            }
+         }, {
+            "name" : "Months elapsed",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "precision" : "Month",
+               "type" : "DurationBetween",
                "signature" : [ {
                   "name" : "{urn:hl7-org:elm-types:r1}DateTime",
                   "type" : "NamedTypeSpecifier"
@@ -104,80 +286,30 @@
                   "type" : "NamedTypeSpecifier"
                } ],
                "operand" : [ {
-                  "type" : "ToDateTime",
+                  "name" : "ToDateTime",
+                  "libraryName" : "FHIRHelpers",
+                  "type" : "FunctionRef",
                   "signature" : [ {
-                     "name" : "{urn:hl7-org:elm-types:r1}Date",
+                     "name" : "{http://hl7.org/fhir}instant",
                      "type" : "NamedTypeSpecifier"
                   } ],
-                  "operand" : {
-                     "path" : "birthDate.value",
+                  "operand" : [ {
+                     "path" : "issued",
                      "type" : "Property",
                      "source" : {
-                        "name" : "Patient",
+                        "name" : "Most Recent Mammogram",
+                        "libraryName" : "BCE",
                         "type" : "ExpressionRef"
                      }
-                  }
+                  } ]
                }, {
-                  "type" : "Start",
-                  "operand" : {
-                     "name" : "Measurement Period",
-                     "type" : "ParameterRef"
-                  }
+                  "name" : "Reference Date",
+                  "libraryName" : "BCE",
+                  "type" : "ParameterRef"
                } ]
             }
          }, {
-            "name" : "Age between 52 and 75",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "And",
-               "operand" : [ {
-                  "type" : "GreaterOrEqual",
-                  "signature" : [ {
-                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "type" : "NamedTypeSpecifier"
-                  }, {
-                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "type" : "NamedTypeSpecifier"
-                  } ],
-                  "operand" : [ {
-                     "name" : "Age",
-                     "type" : "ExpressionRef"
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "52",
-                     "type" : "Literal"
-                  } ]
-               }, {
-                  "type" : "LessOrEqual",
-                  "signature" : [ {
-                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "type" : "NamedTypeSpecifier"
-                  }, {
-                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "type" : "NamedTypeSpecifier"
-                  } ],
-                  "operand" : [ {
-                     "name" : "Age",
-                     "type" : "ExpressionRef"
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                     "value" : "75",
-                     "type" : "Literal"
-                  } ]
-               } ]
-            }
-         }, {
-            "name" : "Is female",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "name" : "Is female",
-               "libraryName" : "BCE",
-               "type" : "ExpressionRef"
-            }
-         }, {
-            "name" : "Is Recommendation Applicable",
+            "name" : "Recommendation is applicable",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -187,24 +319,29 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "name" : "Is female",
-                        "type" : "ExpressionRef"
+                        "type" : "And",
+                        "operand" : [ {
+                           "name" : "Alive",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "name" : "Active",
+                           "type" : "ExpressionRef"
+                        } ]
                      }, {
-                        "name" : "Age between 52 and 75",
+                        "name" : "Woman aged 50 to 74 years inclusive",
                         "type" : "ExpressionRef"
                      } ]
                   }, {
                      "type" : "Not",
                      "operand" : {
-                        "name" : "Has Appropriate Breast Cancer Screening",
-                        "libraryName" : "BCE",
+                        "name" : "Excluded",
                         "type" : "ExpressionRef"
                      }
                   } ]
                }, {
                   "type" : "Not",
                   "operand" : {
-                     "name" : "Bilateral Mastectomy Performed",
+                     "name" : "Mammogram within 24 months",
                      "libraryName" : "BCE",
                      "type" : "ExpressionRef"
                   }
@@ -217,118 +354,18 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Is Recommendation Applicable",
+                  "name" : "Recommendation is applicable",
                   "type" : "ExpressionRef"
                },
                "then" : {
                   "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "Recommend appropriate breast cancer screening",
+                  "value" : "Due for mammogram",
                   "type" : "Literal"
                },
                "else" : {
                   "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "Patient has appropriate breast cancer screening",
+                  "value" : "Up to date or not a candidate.",
                   "type" : "Literal"
-               }
-            }
-         }, {
-            "name" : "Rationale",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "Coalesce",
-               "operand" : [ {
-                  "type" : "List",
-                  "element" : [ {
-                     "type" : "Concatenate",
-                     "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "most recent mammogram performed on ",
-                        "type" : "Literal"
-                     }, {
-                        "type" : "ToString",
-                        "signature" : [ {
-                           "name" : "{urn:hl7-org:elm-types:r1}Date",
-                           "type" : "NamedTypeSpecifier"
-                        } ],
-                        "operand" : {
-                           "type" : "DateFrom",
-                           "operand" : {
-                              "name" : "ToDateTime",
-                              "libraryName" : "FHIRHelpers",
-                              "type" : "FunctionRef",
-                              "signature" : [ {
-                                 "name" : "{http://hl7.org/fhir}dateTime",
-                                 "type" : "NamedTypeSpecifier"
-                              } ],
-                              "operand" : [ {
-                                 "asType" : "{http://hl7.org/fhir}dateTime",
-                                 "type" : "As",
-                                 "operand" : {
-                                    "path" : "performed",
-                                    "type" : "Property",
-                                    "source" : {
-                                       "name" : "Most Recent Mammogram",
-                                       "libraryName" : "BCE",
-                                       "type" : "ExpressionRef"
-                                    }
-                                 }
-                              } ]
-                           }
-                        }
-                     } ]
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : "no evidence of appropriate screening",
-                     "type" : "Literal"
-                  } ]
-               } ]
-            }
-         }, {
-            "name" : "Get Card Detail",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "If",
-               "condition" : {
-                  "name" : "Is Recommendation Applicable",
-                  "type" : "ExpressionRef"
-               },
-               "then" : {
-                  "type" : "Concatenate",
-                  "operand" : [ {
-                     "type" : "Concatenate",
-                     "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "Patient meets the inclusion criteria for appropriate breast cancer screening, but has ",
-                        "type" : "Literal"
-                     }, {
-                        "name" : "Rationale",
-                        "type" : "ExpressionRef"
-                     } ]
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : ".",
-                     "type" : "Literal"
-                  } ]
-               },
-               "else" : {
-                  "type" : "Concatenate",
-                  "operand" : [ {
-                     "type" : "Concatenate",
-                     "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "Patient has appropriate breast cancer screening: ",
-                        "type" : "Literal"
-                     }, {
-                        "name" : "Rationale",
-                        "type" : "ExpressionRef"
-                     } ]
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : ".",
-                     "type" : "Literal"
-                  } ]
                }
             }
          }, {
@@ -338,7 +375,7 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Is Recommendation Applicable",
+                  "name" : "Recommendation is applicable",
                   "type" : "ExpressionRef"
                },
                "then" : {
@@ -347,9 +384,128 @@
                   "type" : "Literal"
                },
                "else" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "routine",
-                  "type" : "Literal"
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "Rationale",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "name" : "Recommendation is applicable",
+                  "type" : "ExpressionRef"
+               },
+               "then" : {
+                  "type" : "Coalesce",
+                  "operand" : [ {
+                     "type" : "List",
+                     "element" : [ {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "type" : "Concatenate",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : " the most recent mammogram performed on ",
+                              "type" : "Literal"
+                           }, {
+                              "type" : "ToString",
+                              "signature" : [ {
+                                 "name" : "{urn:hl7-org:elm-types:r1}Date",
+                                 "type" : "NamedTypeSpecifier"
+                              } ],
+                              "operand" : {
+                                 "type" : "DateFrom",
+                                 "operand" : {
+                                    "name" : "ToDateTime",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "signature" : [ {
+                                       "name" : "{http://hl7.org/fhir}instant",
+                                       "type" : "NamedTypeSpecifier"
+                                    } ],
+                                    "operand" : [ {
+                                       "path" : "issued",
+                                       "type" : "Property",
+                                       "source" : {
+                                          "name" : "Most Recent Mammogram",
+                                          "libraryName" : "BCE",
+                                          "type" : "ExpressionRef"
+                                       }
+                                    } ]
+                                 }
+                              }
+                           } ]
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : ".",
+                           "type" : "Literal"
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : " no mammogram on file",
+                        "type" : "Literal"
+                     } ]
+                  } ]
+               },
+               "else" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
+               }
+            }
+         }, {
+            "name" : "Get Card Detail",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "name" : "Recommendation is applicable",
+                  "type" : "ExpressionRef"
+               },
+               "then" : {
+                  "type" : "Concatenate",
+                  "operand" : [ {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "This patient is up to date with breast cancer screening, with ",
+                        "type" : "Literal"
+                     }, {
+                        "name" : "Rationale",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : ".",
+                     "type" : "Literal"
+                  } ]
+               },
+               "else" : {
+                  "type" : "Concatenate",
+                  "operand" : [ {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "This patient either is not a candidate for breast cancer screening, or is a candidate but is overdue, with ",
+                        "type" : "Literal"
+                     }, {
+                        "name" : "Rationale",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                     "value" : ".",
+                     "type" : "Literal"
+                  } ]
                }
             }
          } ]

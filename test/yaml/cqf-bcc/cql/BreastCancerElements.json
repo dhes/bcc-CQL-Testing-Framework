@@ -40,51 +40,49 @@
       },
       "parameters" : {
          "def" : [ {
-            "name" : "Measurement Period",
+            "name" : "Reference Date",
             "accessLevel" : "Public",
             "default" : {
-               "lowClosed" : true,
-               "highClosed" : true,
-               "type" : "Interval",
-               "low" : {
-                  "type" : "Subtract",
-                  "signature" : [ {
-                     "name" : "{urn:hl7-org:elm-types:r1}DateTime",
-                     "type" : "NamedTypeSpecifier"
-                  }, {
-                     "name" : "{urn:hl7-org:elm-types:r1}Quantity",
-                     "type" : "NamedTypeSpecifier"
-                  } ],
-                  "operand" : [ {
-                     "type" : "Now"
-                  }, {
-                     "value" : 1,
-                     "unit" : "year",
-                     "type" : "Quantity"
-                  } ]
+               "type" : "DateTime",
+               "year" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "2024",
+                  "type" : "Literal"
                },
-               "high" : {
-                  "type" : "Now"
+               "month" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "1",
+                  "type" : "Literal"
+               },
+               "day" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "1",
+                  "type" : "Literal"
+               },
+               "hour" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               },
+               "minute" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               },
+               "second" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               },
+               "timezoneOffset" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                  "value" : "-6.0",
+                  "type" : "Literal"
                }
             },
             "parameterTypeSpecifier" : {
-               "type" : "IntervalTypeSpecifier",
-               "pointType" : {
-                  "name" : "{urn:hl7-org:elm-types:r1}DateTime",
-                  "type" : "NamedTypeSpecifier"
-               }
-            }
-         } ]
-      },
-      "codes" : {
-         "def" : [ {
-            "name" : "Left (qualifier value)",
-            "id" : "7771000",
-            "display" : "Left (qualifier value)",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "SNOMEDCT",
-               "libraryName" : "FC"
+               "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+               "type" : "NamedTypeSpecifier"
             }
          } ]
       },
@@ -106,7 +104,7 @@
                }
             }
          }, {
-            "name" : "Is female",
+            "name" : "Woman",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -141,15 +139,153 @@
                } ]
             }
          }, {
-            "name" : "AsOf",
+            "name" : "Todays date",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
-               "type" : "End",
+               "name" : "Reference Date",
+               "type" : "ParameterRef"
+            }
+         }, {
+            "name" : "BirthDate",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "ToString",
+               "signature" : [ {
+                  "name" : "{urn:hl7-org:elm-types:r1}Date",
+                  "type" : "NamedTypeSpecifier"
+               } ],
                "operand" : {
-                  "name" : "Measurement Period",
-                  "type" : "ParameterRef"
+                  "name" : "ToDate",
+                  "libraryName" : "FHIRHelpers",
+                  "type" : "FunctionRef",
+                  "operand" : [ {
+                     "path" : "birthDate",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "Patient",
+                        "type" : "ExpressionRef"
+                     }
+                  } ]
                }
+            }
+         }, {
+            "name" : "Age",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "precision" : "Year",
+               "type" : "CalculateAgeAt",
+               "signature" : [ {
+                  "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                  "type" : "NamedTypeSpecifier"
+               }, {
+                  "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                  "type" : "NamedTypeSpecifier"
+               } ],
+               "operand" : [ {
+                  "type" : "ToDateTime",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Date",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : {
+                     "path" : "birthDate.value",
+                     "type" : "Property",
+                     "source" : {
+                        "name" : "Patient",
+                        "type" : "ExpressionRef"
+                     }
+                  }
+               }, {
+                  "name" : "Reference Date",
+                  "type" : "ParameterRef"
+               } ]
+            }
+         }, {
+            "name" : "aged 50 to 74 years inclusive",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "type" : "GreaterOrEqual",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "Age",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "50",
+                     "type" : "Literal"
+                  } ]
+               }, {
+                  "type" : "LessOrEqual",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "Age",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "74",
+                     "type" : "Literal"
+                  } ]
+               } ]
+            }
+         }, {
+            "name" : "aged 52 to 74 years inclusive",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "And",
+               "operand" : [ {
+                  "type" : "GreaterOrEqual",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "Age",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "52",
+                     "type" : "Literal"
+                  } ]
+               }, {
+                  "type" : "LessOrEqual",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "Age",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                     "value" : "74",
+                     "type" : "Literal"
+                  } ]
+               } ]
             }
          }, {
             "name" : "Bilateral Mastectomy Procedure",
@@ -663,8 +799,8 @@
                "source" : [ {
                   "alias" : "Mammogram",
                   "expression" : {
-                     "dataType" : "{http://hl7.org/fhir}Procedure",
-                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Procedure",
+                     "dataType" : "{http://hl7.org/fhir}Observation",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
                      "codeProperty" : "code",
                      "codeComparator" : "in",
                      "type" : "Retrieve",
@@ -690,7 +826,7 @@
                      "libraryName" : "FHIRHelpers",
                      "type" : "FunctionRef",
                      "signature" : [ {
-                        "name" : "{http://hl7.org/fhir}ProcedureStatus",
+                        "name" : "{http://hl7.org/fhir}ObservationStatus",
                         "type" : "NamedTypeSpecifier"
                      } ],
                      "operand" : [ {
@@ -700,7 +836,7 @@
                      } ]
                   }, {
                      "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : "completed",
+                     "value" : "final",
                      "type" : "Literal"
                   } ]
                }
@@ -715,9 +851,9 @@
                "source" : {
                   "type" : "Query",
                   "source" : [ {
-                     "alias" : "P",
+                     "alias" : "O",
                      "expression" : {
-                        "name" : "procedures",
+                        "name" : "observations",
                         "type" : "OperandRef"
                      }
                   } ],
@@ -733,8 +869,36 @@
                               "libraryName" : "FC",
                               "type" : "FunctionRef",
                               "operand" : [ {
-                                 "name" : "performed",
-                                 "type" : "IdentifierRef"
+                                 "type" : "As",
+                                 "operand" : {
+                                    "name" : "issued",
+                                    "type" : "IdentifierRef"
+                                 },
+                                 "asTypeSpecifier" : {
+                                    "type" : "ChoiceTypeSpecifier",
+                                    "choice" : [ {
+                                       "name" : "{http://hl7.org/fhir}dateTime",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}Period",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}Timing",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}instant",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}string",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}Age",
+                                       "type" : "NamedTypeSpecifier"
+                                    }, {
+                                       "name" : "{http://hl7.org/fhir}Range",
+                                       "type" : "NamedTypeSpecifier"
+                                    } ]
+                                 }
                               } ]
                            }
                         }
@@ -743,11 +907,11 @@
                }
             },
             "operand" : [ {
-               "name" : "procedures",
+               "name" : "observations",
                "operandTypeSpecifier" : {
                   "type" : "ListTypeSpecifier",
                   "elementType" : {
-                     "name" : "{http://hl7.org/fhir}Procedure",
+                     "name" : "{http://hl7.org/fhir}Observation",
                      "type" : "NamedTypeSpecifier"
                   }
                }
@@ -769,8 +933,8 @@
                   "name" : "Mammography Performed",
                   "type" : "ExpressionRef"
                }, {
-                  "name" : "AsOf",
-                  "type" : "ExpressionRef"
+                  "name" : "Reference Date",
+                  "type" : "ParameterRef"
                } ]
             }
          }, {
@@ -798,9 +962,37 @@
                            "libraryName" : "FC",
                            "type" : "FunctionRef",
                            "operand" : [ {
-                              "path" : "performed",
-                              "scope" : "P",
-                              "type" : "Property"
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "issued",
+                                 "scope" : "P",
+                                 "type" : "Property"
+                              },
+                              "asTypeSpecifier" : {
+                                 "type" : "ChoiceTypeSpecifier",
+                                 "choice" : [ {
+                                    "name" : "{http://hl7.org/fhir}dateTime",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Period",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Timing",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}instant",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}string",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Age",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Range",
+                                    "type" : "NamedTypeSpecifier"
+                                 } ]
+                              }
                            } ]
                         }
                      }, {
@@ -817,8 +1009,8 @@
                               "type" : "NamedTypeSpecifier"
                            } ],
                            "operand" : [ {
-                              "name" : "AsOf",
-                              "type" : "ExpressionRef"
+                              "name" : "Reference Date",
+                              "type" : "ParameterRef"
                            }, {
                               "value" : 27,
                               "unit" : "months",
@@ -826,8 +1018,8 @@
                            } ]
                         },
                         "high" : {
-                           "name" : "AsOf",
-                           "type" : "ExpressionRef"
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
                         }
                      } ]
                   }, {
@@ -835,15 +1027,112 @@
                      "operand" : {
                         "type" : "IsNull",
                         "operand" : {
-                           "name" : "AsOf",
-                           "type" : "ExpressionRef"
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
                         }
                      }
                   } ]
                }
             }
          }, {
-            "name" : "Has Appropriate Breast Cancer Screening",
+            "name" : "Mammography Performed Within 24 Months",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "P",
+                  "expression" : {
+                     "name" : "Mammography Performed",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "And",
+                  "operand" : [ {
+                     "type" : "In",
+                     "operand" : [ {
+                        "type" : "End",
+                        "operand" : {
+                           "name" : "ToInterval",
+                           "libraryName" : "FC",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "issued",
+                                 "scope" : "P",
+                                 "type" : "Property"
+                              },
+                              "asTypeSpecifier" : {
+                                 "type" : "ChoiceTypeSpecifier",
+                                 "choice" : [ {
+                                    "name" : "{http://hl7.org/fhir}dateTime",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Period",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Timing",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}instant",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}string",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Age",
+                                    "type" : "NamedTypeSpecifier"
+                                 }, {
+                                    "name" : "{http://hl7.org/fhir}Range",
+                                    "type" : "NamedTypeSpecifier"
+                                 } ]
+                              }
+                           } ]
+                        }
+                     }, {
+                        "lowClosed" : true,
+                        "highClosed" : true,
+                        "type" : "Interval",
+                        "low" : {
+                           "type" : "Subtract",
+                           "signature" : [ {
+                              "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                              "type" : "NamedTypeSpecifier"
+                           }, {
+                              "name" : "{urn:hl7-org:elm-types:r1}Quantity",
+                              "type" : "NamedTypeSpecifier"
+                           } ],
+                           "operand" : [ {
+                              "name" : "Reference Date",
+                              "type" : "ParameterRef"
+                           }, {
+                              "value" : 24,
+                              "unit" : "months",
+                              "type" : "Quantity"
+                           } ]
+                        },
+                        "high" : {
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
+                        }
+                     } ]
+                  }, {
+                     "type" : "Not",
+                     "operand" : {
+                        "type" : "IsNull",
+                        "operand" : {
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
+                        }
+                     }
+                  } ]
+               }
+            }
+         }, {
+            "name" : "Mammogram within 24 months",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -851,13 +1140,127 @@
                "signature" : [ {
                   "type" : "ListTypeSpecifier",
                   "elementType" : {
-                     "name" : "{http://hl7.org/fhir}Procedure",
+                     "name" : "{http://hl7.org/fhir}Observation",
                      "type" : "NamedTypeSpecifier"
                   }
                } ],
                "operand" : {
-                  "name" : "Mammography Performed Within 27 Months",
-                  "type" : "ExpressionRef"
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "P",
+                     "expression" : {
+                        "name" : "Mammography Performed",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "GreaterOrEqual",
+                     "signature" : [ {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     }, {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     } ],
+                     "operand" : [ {
+                        "name" : "ToDateTime",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "signature" : [ {
+                           "name" : "{http://hl7.org/fhir}instant",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "path" : "issued",
+                           "scope" : "P",
+                           "type" : "Property"
+                        } ]
+                     }, {
+                        "type" : "Subtract",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Quantity",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
+                        }, {
+                           "value" : 2,
+                           "unit" : "years",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "Mammogram within 27 months",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "signature" : [ {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{http://hl7.org/fhir}Observation",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               } ],
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "P",
+                     "expression" : {
+                        "name" : "Mammography Performed",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "GreaterOrEqual",
+                     "signature" : [ {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     }, {
+                        "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                        "type" : "NamedTypeSpecifier"
+                     } ],
+                     "operand" : [ {
+                        "name" : "ToDateTime",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "signature" : [ {
+                           "name" : "{http://hl7.org/fhir}instant",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "path" : "issued",
+                           "scope" : "P",
+                           "type" : "Property"
+                        } ]
+                     }, {
+                        "type" : "Subtract",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}DateTime",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Quantity",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "Reference Date",
+                           "type" : "ParameterRef"
+                        }, {
+                           "value" : 27,
+                           "unit" : "months",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  }
                }
             }
          } ]

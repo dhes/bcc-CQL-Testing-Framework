@@ -7,12 +7,21 @@ include FHIRCommon version '4.0.1' called FC
 
 include BreastCancerConcepts called Bx
 
-parameter "Measurement Period" Interval<DateTime>
-default Interval[Now() - 1 year, Now()]
+// parameter "Measurement Period" Interval<DateTime>
+// default Interval[Now() - 1 year, Now()]
 
-//Code '7771000' from "SNOMEDCT" //Left (qualifier value)'
-code "Left (qualifier value)":
-  '7771000' from FC."SNOMEDCT" display 'Left (qualifier value)'
+// for tests, fix the date
+// in production, make it Now()
+parameter "Reference Date" DateTime 
+  default  @2024-01-01T00:00:00-06:00
+  // default Now()
+
+// //Code '7771000' from "SNOMEDCT" //Left (qualifier value)'
+// code "Left (qualifier value)":
+//   '7771000' from FC."SNOMEDCT" display 'Left (qualifier value)'
+
+// define "what day is it":
+//   "Reference Date"
 
 // Concept {
 //   Code '7771000' from FC."SNOMEDCT"
@@ -26,12 +35,44 @@ code "Left (qualifier value)":
 
 context Patient
 
-define "Is female":
-  // Patient.gender in Bx."Female Gender"
+// obsolescense candidate
+// define "Is female":
+//   // Patient.gender in Bx."Female Gender"
+//   Patient.gender = 'female'
+
+define Woman:
   Patient.gender = 'female'
 
-define AsOf:
-  end of "Measurement Period"
+define "Todays date":
+  "Reference Date"
+
+define BirthDate:
+  ToString(Patient.birthDate)
+
+define Age:
+  AgeInYearsAt("Reference Date")
+  // AgeInYearsAt(Today()) // production
+
+// These revisions align the CQL variables with USPSTF language
+// ...new...
+// CDS version
+define "aged 50 to 74 years inclusive": 
+  Age between 50 and 74 // `between` is inclusive
+
+// CQM version
+define "aged 52 to 74 years inclusive": // AKA "Initial Population"
+  Age between 52 and 74 // `between` is inclusive
+
+//...new...
+// ...CDS...
+// define "Woman aged 50 to 74 years inclusive":
+//   Woman and "aged 50 to 74 years inclusive"
+// ...CQM...
+// define "Woman aged 52 to 74 years inclusive":
+//   Woman and "aged 52 to 74 years inclusive"
+
+// define AsOf:
+//   end of "Measurement Period"
 
 // pointInTime is not defined
 // define "Global.NormalizeInterval(pointInTime DateTime, period Interval<DateTime>)":
@@ -108,21 +149,33 @@ define "Bilateral Mastectomy Performed":
 				or exists "Bilateral Mastectomy Procedure"
 
 define "Mammography Performed":
-[Procedure: Bx."Mammography"] Mammogram
-where Mammogram.status = 'completed'
+[Observation: Bx."Mammography"] Mammogram
+where Mammogram.status = 'final'
 
-define function MostRecent(procedures List<Procedure>, asOf DateTime):
+define function MostRecent(observations List<Observation>, asOf DateTime):
   First(
-    procedures P
-      sort by start of FC.ToInterval(performed)
+    observations O
+      sort by start of FC.ToInterval(issued)
   )
 
 define "Most Recent Mammogram":
-  MostRecent("Mammography Performed", AsOf)
+  MostRecent("Mammography Performed", "Reference Date")
 
-define "Mammography Performed Within 27 Months":
+define "Mammography Performed Within 27 Months": // relative to end of measurment period
 "Mammography Performed" P
-where FC.ToInterval(P.performed) ends 27 months or less on or before AsOf
+where FC.ToInterval(P.issued) ends 27 months or less on or before "Reference Date"
 
-define "Has Appropriate Breast Cancer Screening":
-exists "Mammography Performed Within 27 Months"
+define "Mammography Performed Within 24 Months": // relative to end of measurment period
+"Mammography Performed" P
+where FC.ToInterval(P.issued) ends 24 months or less on or before "Reference Date"
+
+// define "Has Appropriate Breast Cancer Screening":
+// exists "Mammography Performed Within 27 Months"
+
+define "Mammogram within 24 months":
+  exists "Mammography Performed" P
+  where P.issued >= ("Reference Date" - 2 years)
+
+define "Mammogram within 27 months": // this may not be all that useful
+  exists "Mammography Performed" P
+  where P.issued >= ("Reference Date" - 27 months)

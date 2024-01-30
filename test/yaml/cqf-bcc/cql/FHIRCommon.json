@@ -83,17 +83,6 @@
             "accessLevel" : "Public"
          } ]
       },
-      "valueSets" : {
-         "def" : [ {
-            "name" : "Active Condition",
-            "id" : "http://fhir.org/guides/cqf/common/ValueSet/active-condition",
-            "accessLevel" : "Public"
-         }, {
-            "name" : "Inactive Condition",
-            "id" : "http://fhir.org/guides/cqf/common/ValueSet/inactive-condition",
-            "accessLevel" : "Public"
-         } ]
-      },
       "codes" : {
          "def" : [ {
             "name" : "Birthdate",
