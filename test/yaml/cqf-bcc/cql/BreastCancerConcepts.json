@@ -57,6 +57,10 @@
             "name" : "Mammography",
             "id" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018",
             "accessLevel" : "Public"
+         }, {
+            "name" : "Breast Cancer Diagnosis",
+            "id" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1116.185",
+            "accessLevel" : "Public"
          } ]
       }
    }

@@ -5,7 +5,7 @@ name: Second example of using reusable resources
 # in separate YAML files as long as they are named under externalData.
 externalData:
 - reusable_resources
-- more_resources
+- reusable_medications
 
 data:
 -
