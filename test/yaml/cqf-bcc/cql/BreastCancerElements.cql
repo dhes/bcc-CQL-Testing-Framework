@@ -88,8 +88,8 @@ define "Bilateral Mastectomy Procedure":
 
 define "Bilateral Mastectomy Diagnosis":
   [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
-    where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
-  and BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
+    // where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
+  where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
 // WHERE BilateralMastectomyHistory.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
@@ -111,8 +111,8 @@ define "Left Mastectomy Diagnosis":
       // where UnilateralMastectomyDiagnosis.bodySite ~ code '7771000' from FC."SNOMEDCT"
     ) 
   ) LeftMastectomy
-where LeftMastectomy.clinicalStatus in FC."Active Condition"
-  and LeftMastectomy.verificationStatus ~ FC."confirmed"
+// where LeftMastectomy.clinicalStatus in FC."Active Condition"
+  where LeftMastectomy.verificationStatus ~ FC."confirmed"
 // WHERE LeftMastectomy.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
@@ -128,8 +128,8 @@ define "Right Mastectomy Diagnosis":
       //  where UnilateralMastectomyDiagnosis.anatomicalLocationSite ~ code '24028007' from FC."SNOMEDCT"
     )
 ) RightMastectomy
-  where RightMastectomy.clinicalStatus in FC."Active Condition"
-  and RightMastectomy.verificationStatus ~ FC."confirmed"
+  // where RightMastectomy.clinicalStatus in FC."Active Condition"
+  where RightMastectomy.verificationStatus ~ FC."confirmed"
 // WHERE RightMastectomy.prevalencePeriod starts on or before
 // end of "Measurement Period"
 

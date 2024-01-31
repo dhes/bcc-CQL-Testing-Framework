@@ -361,57 +361,34 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "InValueSet",
-                     "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     } ],
-                     "code" : {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "clinicalStatus",
-                           "scope" : "BilateralMastectomyHistory",
-                           "type" : "Property"
-                        } ]
-                     },
-                     "valueset" : {
-                        "name" : "Active Condition",
-                        "libraryName" : "FC"
-                     }
+                  "type" : "Equivalent",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
                   }, {
-                     "type" : "Equivalent",
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "ToConcept",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "verificationStatus",
+                        "scope" : "BilateralMastectomyHistory",
+                        "type" : "Property"
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
                      "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     }, {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                        "name" : "{urn:hl7-org:elm-types:r1}Code",
                         "type" : "NamedTypeSpecifier"
                      } ],
-                     "operand" : [ {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "verificationStatus",
-                           "scope" : "BilateralMastectomyHistory",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "type" : "ToConcept",
-                        "signature" : [ {
-                           "name" : "{urn:hl7-org:elm-types:r1}Code",
-                           "type" : "NamedTypeSpecifier"
-                        } ],
-                        "operand" : {
-                           "name" : "confirmed",
-                           "libraryName" : "FC",
-                           "type" : "CodeRef"
-                        }
-                     } ]
+                     "operand" : {
+                        "name" : "confirmed",
+                        "libraryName" : "FC",
+                        "type" : "CodeRef"
+                     }
                   } ]
                }
             }
@@ -503,57 +480,34 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "InValueSet",
-                     "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     } ],
-                     "code" : {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "clinicalStatus",
-                           "scope" : "LeftMastectomy",
-                           "type" : "Property"
-                        } ]
-                     },
-                     "valueset" : {
-                        "name" : "Active Condition",
-                        "libraryName" : "FC"
-                     }
+                  "type" : "Equivalent",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
                   }, {
-                     "type" : "Equivalent",
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "ToConcept",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "verificationStatus",
+                        "scope" : "LeftMastectomy",
+                        "type" : "Property"
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
                      "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     }, {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                        "name" : "{urn:hl7-org:elm-types:r1}Code",
                         "type" : "NamedTypeSpecifier"
                      } ],
-                     "operand" : [ {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "verificationStatus",
-                           "scope" : "LeftMastectomy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "type" : "ToConcept",
-                        "signature" : [ {
-                           "name" : "{urn:hl7-org:elm-types:r1}Code",
-                           "type" : "NamedTypeSpecifier"
-                        } ],
-                        "operand" : {
-                           "name" : "confirmed",
-                           "libraryName" : "FC",
-                           "type" : "CodeRef"
-                        }
-                     } ]
+                     "operand" : {
+                        "name" : "confirmed",
+                        "libraryName" : "FC",
+                        "type" : "CodeRef"
+                     }
                   } ]
                }
             }
@@ -645,57 +599,34 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "And",
-                  "operand" : [ {
-                     "type" : "InValueSet",
-                     "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     } ],
-                     "code" : {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "clinicalStatus",
-                           "scope" : "RightMastectomy",
-                           "type" : "Property"
-                        } ]
-                     },
-                     "valueset" : {
-                        "name" : "Active Condition",
-                        "libraryName" : "FC"
-                     }
+                  "type" : "Equivalent",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
                   }, {
-                     "type" : "Equivalent",
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "ToConcept",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "verificationStatus",
+                        "scope" : "RightMastectomy",
+                        "type" : "Property"
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
                      "signature" : [ {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
-                        "type" : "NamedTypeSpecifier"
-                     }, {
-                        "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                        "name" : "{urn:hl7-org:elm-types:r1}Code",
                         "type" : "NamedTypeSpecifier"
                      } ],
-                     "operand" : [ {
-                        "name" : "ToConcept",
-                        "libraryName" : "FHIRHelpers",
-                        "type" : "FunctionRef",
-                        "operand" : [ {
-                           "path" : "verificationStatus",
-                           "scope" : "RightMastectomy",
-                           "type" : "Property"
-                        } ]
-                     }, {
-                        "type" : "ToConcept",
-                        "signature" : [ {
-                           "name" : "{urn:hl7-org:elm-types:r1}Code",
-                           "type" : "NamedTypeSpecifier"
-                        } ],
-                        "operand" : {
-                           "name" : "confirmed",
-                           "libraryName" : "FC",
-                           "type" : "CodeRef"
-                        }
-                     } ]
+                     "operand" : {
+                        "name" : "confirmed",
+                        "libraryName" : "FC",
+                        "type" : "CodeRef"
+                     }
                   } ]
                }
             }

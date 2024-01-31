@@ -146,5 +146,6 @@ data:
   - text: BIRADS Category 2 (Benign)
 
 results:
+  Recommendation is applicable: false
 
 

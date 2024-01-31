@@ -9,36 +9,4 @@ data:
   birthDate: 1953-02-16
 
 results:
-  Summary:
-    Patient:
-      Name: Joe Smith
-      Gender: male
-      Age: 65
-      MeetsInclusionCriteria: false
-    PertinentMedicalHistory:
-      ConditionsAssociatedWithChronicPain: []
-      RiskFactorsForOpioidRelatedHarms:
-      -
-        Abatement: null
-        DateRecorded: null
-        Name: 65 years or older
-        Onset: null
-        Status: active
-        Visit: null
-    PainAssessments:
-      NumericPainIntensityAssessments: []
-      PainEnjoymentGeneralActivityAssessments: []
-      STarTBackAssessments: []
-    HistoricalTreatments:
-      OpioidMedications: []
-      NonOpioidMedications: []
-      NonPharmacologicTreatments: []
-      StoolSoftenersAndLaxatives: []
-    RiskConsiderations:
-      RiskScreeningsRelevantToPainManagement: []
-      BenzodiazepineMedications: []
-      NaloxoneMedications: []
-      UrineDrugScreens: []
-      MostRecentMME: null
-    
-      
+  Recommendation is applicable: false
