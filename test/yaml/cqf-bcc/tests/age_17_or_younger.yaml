@@ -7,6 +7,8 @@ data:
   name: Joe Smith
   gender: male
   birthDate: 2003-02-16
+  active: true
+  deceasedBoolean: false
 -
   resourceType: MedicationRequest
   code: RXNORM#197591 Diazepam 5 MG Oral Tablet

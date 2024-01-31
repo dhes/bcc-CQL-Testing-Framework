@@ -13,8 +13,8 @@ include BreastCancerConcepts called Bx
 // for tests, fix the date
 // in production, make it Now()
 parameter "Reference Date" DateTime 
-  default  @2024-01-01T00:00:00-06:00
-  // default Now()
+  // default  @2024-01-01T00:00:00-06:00
+  default Now()
 
 // //Code '7771000' from "SNOMEDCT" //Left (qualifier value)'
 // code "Left (qualifier value)":

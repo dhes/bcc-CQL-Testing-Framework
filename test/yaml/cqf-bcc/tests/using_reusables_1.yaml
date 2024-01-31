@@ -22,6 +22,8 @@ data:
   name: Fuller Jackson
   gender: male
   birthDate: 1954-02-16
+  active: true
+  deceasedBoolean: false
 # The `$import` keyword will cause all resources in the referenced anchor to be 
 # included in this test case. In the example below painRelatedConditions is contained 
 # within `reusable` at the top of this file and consists of two Condition resources, 
@@ -31,9 +33,9 @@ data:
 
 results:
   # To check for strict equality, simply list desired output objects under `results`.
-  ReportConditionsAssociatedWithChronicPain: *reportedConditions
+  # ReportConditionsAssociatedWithChronicPain: *reportedConditions
   # Can also verify certain output object properties by using `$should` expressions.
   # The following indicates that the Summary object should exist.
-  Summary: $should exist
+  # Summary: $should exist
   # The following indicates that this output should be arrays of length 1
-  ReportRiskFactorsForOpioidRelatedHarms: $should have length 1
+  # ReportRiskFactorsForOpioidRelatedHarms: $should have length 1

@@ -2,6 +2,6 @@
 library:
   name: BreastCancerScreeningCDS
 options:
-  date: "2024-01-01T00:00:00.0Z"
+  date: "2024-01-01T00:00:00+00:00"
   dumpFiles:
     enabled: true

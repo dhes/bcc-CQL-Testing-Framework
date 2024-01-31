@@ -7,6 +7,8 @@ data:
   name: Fuller Jackson
   gender: male
   birthDate: 1954-02-16
+  active: true
+  deceasedBoolean: false
 -
   resourceType: Condition
   code: SNOMED#203082005 Fibromyalgia (disorder)

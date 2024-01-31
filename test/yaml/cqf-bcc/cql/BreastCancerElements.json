@@ -43,42 +43,7 @@
             "name" : "Reference Date",
             "accessLevel" : "Public",
             "default" : {
-               "type" : "DateTime",
-               "year" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "2024",
-                  "type" : "Literal"
-               },
-               "month" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "1",
-                  "type" : "Literal"
-               },
-               "day" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "1",
-                  "type" : "Literal"
-               },
-               "hour" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "0",
-                  "type" : "Literal"
-               },
-               "minute" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "0",
-                  "type" : "Literal"
-               },
-               "second" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                  "value" : "0",
-                  "type" : "Literal"
-               },
-               "timezoneOffset" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
-                  "value" : "-6.0",
-                  "type" : "Literal"
-               }
+               "type" : "Now"
             },
             "parameterTypeSpecifier" : {
                "name" : "{urn:hl7-org:elm-types:r1}DateTime",
