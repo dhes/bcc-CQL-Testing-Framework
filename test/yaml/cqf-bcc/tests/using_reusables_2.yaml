@@ -4,7 +4,7 @@ name: Second example of using reusable resources
 # Referenced resources don't have to be included in the test case file. They can exist
 # in separate YAML files as long as they are named under externalData.
 externalData:
-- reusable_resources
+- reusable_conditions
 - reusable_medications
 
 data:
@@ -15,7 +15,7 @@ data:
   birthDate: 1954-02-16
 # The `$import` keyword will cause all resources in the referenced external YAML file
 # to be included in this test case. In the example below painRelatedConditions is contained
-# in reusable_resources.yml and consists of two Condition resources, both of which will be
+# in reusable_conditions.yml and consists of two Condition resources, both of which will be
 # imported into this test case.
 -
   $import: *painRelatedConditions
