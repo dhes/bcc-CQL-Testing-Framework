@@ -239,12 +239,27 @@
                "type" : "ExpressionRef"
             }
          }, {
+            "name" : "Has Breast Cancer",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Breast Cancer Diagnosis",
+               "libraryName" : "BCE",
+               "type" : "ExpressionRef"
+            }
+         }, {
             "name" : "Excluded",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
-               "name" : "History of bilateral mastectomy",
-               "type" : "ExpressionRef"
+               "type" : "Or",
+               "operand" : [ {
+                  "name" : "History of bilateral mastectomy",
+                  "type" : "ExpressionRef"
+               }, {
+                  "name" : "Has Breast Cancer",
+                  "type" : "ExpressionRef"
+               } ]
             }
          }, {
             "name" : "Most recent mammogram",

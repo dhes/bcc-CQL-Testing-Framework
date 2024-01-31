@@ -5,3 +5,4 @@
 /node_modules
 .DS_Store
 breast-cancer-diagnosis-codes.csv
+input/tests/results/*txt

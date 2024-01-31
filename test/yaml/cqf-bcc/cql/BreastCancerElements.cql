@@ -148,6 +148,10 @@ define "Bilateral Mastectomy Performed":
 				or exists "Bilateral Mastectomy Diagnosis"
 				or exists "Bilateral Mastectomy Procedure"
 
+// Exclusion - Breast Cancer Diagnosis
+define "Breast Cancer Diagnosis":
+  exists [Condition: Bx."Breast Cancer Diagnoses"]
+
 define "Mammography Performed":
 [Observation: Bx."Mammography"] Mammogram
 where Mammogram.status = 'final'

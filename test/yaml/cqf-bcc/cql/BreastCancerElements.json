@@ -687,6 +687,32 @@
                } ]
             }
          }, {
+            "name" : "Breast Cancer Diagnosis",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "signature" : [ {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{http://hl7.org/fhir}Condition",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               } ],
+               "operand" : {
+                  "dataType" : "{http://hl7.org/fhir}Condition",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                  "codeProperty" : "code",
+                  "codeComparator" : "in",
+                  "type" : "Retrieve",
+                  "codes" : {
+                     "name" : "Breast Cancer Diagnoses",
+                     "libraryName" : "Bx",
+                     "type" : "ValueSetRef"
+                  }
+               }
+            }
+         }, {
             "name" : "Mammography Performed",
             "context" : "Patient",
             "accessLevel" : "Public",

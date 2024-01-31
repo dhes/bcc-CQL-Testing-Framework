@@ -64,8 +64,12 @@ define "Woman aged 50 to 74 years inclusive":
 define "History of bilateral mastectomy":
   BCE."Bilateral Mastectomy Performed"
 
+define "Has Breast Cancer":
+  BCE."Breast Cancer Diagnosis"
+
 define "Excluded":
   "History of bilateral mastectomy"
+  or "Has Breast Cancer"
 
 define "Most recent mammogram":
   date from BCE."Most Recent Mammogram".issued
@@ -91,7 +95,7 @@ define "Recommendation is applicable": //"applicible" in the sense that this pat
   "Alive"
 	and "Active"
   and "Woman aged 50 to 74 years inclusive" 
-  and not Excluded // with bilateral mastectomy or eventually "Has breast cancer"
+  and not Excluded // with bilateral mastectomy or has breast cancer
   and not BCE."Mammogram within 24 months"
 
 define "Get Card Summary":
