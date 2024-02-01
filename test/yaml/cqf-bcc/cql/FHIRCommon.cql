@@ -19,6 +19,7 @@ codesystem "ConditionVerificationStatusCodes": 'http://terminology.hl7.org/CodeS
 codesystem "AllergyIntoleranceClinicalStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'
 codesystem "AllergyIntoleranceVerificationStatusCodes": 'http://terminology.hl7.org/CodeSystem/allergyintolerance-verification'
 
+// The next two lines cause errors in this CQL-Testing-Framework environment. I'm not sure where they might really needed.
 // valueset "Active Condition": 'http://fhir.org/guides/cqf/common/ValueSet/active-condition'
 // valueset "Inactive Condition": 'http://fhir.org/guides/cqf/common/ValueSet/inactive-condition'
 

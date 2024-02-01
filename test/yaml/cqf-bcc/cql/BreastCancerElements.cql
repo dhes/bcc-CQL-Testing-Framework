@@ -90,12 +90,13 @@ define "Bilateral Mastectomy Diagnosis":
   [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
     // where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
   where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
+  // and BilateralMastectomyHistory.clinicalStatus ~ FC. "active"
 // WHERE BilateralMastectomyHistory.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
-define "Left Mastectomy Procedure":
-  [Procedure: Bx."Unilateral Mastectomy Left"] UnilateralMastectomyLeftPerformed // the procedure
-    where UnilateralMastectomyLeftPerformed.status='completed'
+// define "Left Mastectomy Procedure":
+//   [Procedure: Bx."Unilateral Mastectomy Left"] UnilateralMastectomyLeftPerformed // the procedure
+//     where UnilateralMastectomyLeftPerformed.status='completed'
 //  and Global."NormalizeInterval" ( UnilateralMastectomyLeftPerformed.relevantDatetime, UnilateralMastectomyLeftPerformed.relevantPeriod ) ends on or before
 // end of "Measurement Period"
 
@@ -105,52 +106,54 @@ define "Left Mastectomy Procedure":
 // Whether the laterality is know is unimportant in the measure score. 
 // It might be better form to created another exclusion "Unilateral Mastectomy"
 // Better yet, sort out the error. 
-define "Left Mastectomy Diagnosis":
-  ( [Condition: Bx."Left Mastectomy Diagnosis"] 
-    union ( [Condition: Bx."Unilateral Mastectomy, Unspecified Laterality, Diagnosis"] // UnilateralMastectomyDiagnosis
-      // where UnilateralMastectomyDiagnosis.bodySite ~ code '7771000' from FC."SNOMEDCT"
-    ) 
-  ) LeftMastectomy
-// where LeftMastectomy.clinicalStatus in FC."Active Condition"
-  where LeftMastectomy.verificationStatus ~ FC."confirmed"
+// define "Left Mastectomy Diagnosis":
+//   ( [Condition: Bx."Left Mastectomy Diagnosis"] 
+//     union ( [Condition: Bx."Unilateral Mastectomy, Unspecified Laterality, Diagnosis"] // UnilateralMastectomyDiagnosis
+//       // where UnilateralMastectomyDiagnosis.bodySite ~ code '7771000' from FC."SNOMEDCT"
+//     ) 
+//   ) LeftMastectomy
+// // where LeftMastectomy.clinicalStatus in FC."Active Condition"
+//   where LeftMastectomy.verificationStatus ~ FC."confirmed"
 // WHERE LeftMastectomy.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
-define "Right Mastectomy Procedure":
-  [Procedure: Bx."Unilateral Mastectomy Right"] UnilateralMastectomyRightPerformed
-    where UnilateralMastectomyRightPerformed.status='completed'
+// define "Right Mastectomy Procedure":
+//   [Procedure: Bx."Unilateral Mastectomy Right"] UnilateralMastectomyRightPerformed
+//     where UnilateralMastectomyRightPerformed.status='completed'
 //  and Global."NormalizeInterval" ( UnilateralMastectomyRightPerformed.relevantDatetime, UnilateralMastectomyRightPerformed.relevantPeriod ) ends on or before
 // end of "Measurement Period"
 
-define "Right Mastectomy Diagnosis":
-  ( [Condition: Bx."Right Mastectomy Diagnosis"] 
-     union  ( [Condition: Bx."Unilateral Mastectomy, Unspecified Laterality, Diagnosis"] // UnilateralMastectomyDiagnosis
-      //  where UnilateralMastectomyDiagnosis.anatomicalLocationSite ~ code '24028007' from FC."SNOMEDCT"
-    )
-) RightMastectomy
-  // where RightMastectomy.clinicalStatus in FC."Active Condition"
-  where RightMastectomy.verificationStatus ~ FC."confirmed"
+// define "Right Mastectomy Diagnosis":
+//   ( [Condition: Bx."Right Mastectomy Diagnosis"] 
+//      union  ( [Condition: Bx."Unilateral Mastectomy, Unspecified Laterality, Diagnosis"] // UnilateralMastectomyDiagnosis
+//       //  where UnilateralMastectomyDiagnosis.anatomicalLocationSite ~ code '24028007' from FC."SNOMEDCT"
+//     )
+// ) RightMastectomy
+//   // where RightMastectomy.clinicalStatus in FC."Active Condition"
+//   where RightMastectomy.verificationStatus ~ FC."confirmed"
 // WHERE RightMastectomy.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
 define "Bilateral Mastectomy Performed":
-  ( 
-		(
-			exists ( "Right Mastectomy Diagnosis" )
-			or exists ( "Right Mastectomy Procedure" )
-		)
-			and 
-		(
-			exists ( "Left Mastectomy Diagnosis" )
-			or exists ( "Left Mastectomy Procedure" )
-		)
-	)
-				or exists "Bilateral Mastectomy Diagnosis"
-				or exists "Bilateral Mastectomy Procedure"
+  // ( 
+	// 	(
+	// 		exists ( "Right Mastectomy Diagnosis" )
+	// 		or exists ( "Right Mastectomy Procedure" )
+	// 	)
+	// 		and 
+	// 	(
+	// 		exists ( "Left Mastectomy Diagnosis" )
+	// 		or exists ( "Left Mastectomy Procedure" )
+	// 	)
+	// ) of
+	exists "Bilateral Mastectomy Diagnosis"
+	or exists "Bilateral Mastectomy Procedure"
 
 // Exclusion - Breast Cancer Diagnosis
 define "Breast Cancer Diagnosis":
-  exists [Condition: Bx."Breast Cancer Diagnoses"]
+  exists ([Condition: Bx."Breast Cancer Diagnoses"] Dx
+  where Dx.verificationStatus ~ FC."confirmed"
+  and Dx.clinicalStatus ~ FC."active")
 
 define "Mammography Performed":
 [Observation: Bx."Mammography"] Mammogram
@@ -165,13 +168,13 @@ define function MostRecent(observations List<Observation>, asOf DateTime):
 define "Most Recent Mammogram":
   MostRecent("Mammography Performed", "Reference Date")
 
-define "Mammography Performed Within 27 Months": // relative to end of measurment period
-"Mammography Performed" P
-where FC.ToInterval(P.issued) ends 27 months or less on or before "Reference Date"
+// define "Mammography Performed Within 27 Months": // relative to end of measurment period
+// "Mammography Performed" P
+// where FC.ToInterval(P.issued) ends 27 months or less on or before "Reference Date"
 
-define "Mammography Performed Within 24 Months": // relative to end of measurment period
-"Mammography Performed" P
-where FC.ToInterval(P.issued) ends 24 months or less on or before "Reference Date"
+// define "Mammography Performed Within 24 Months": // relative to end of measurment period
+// "Mammography Performed" P
+// where FC.ToInterval(P.issued) ends 24 months or less on or before "Reference Date"
 
 // define "Has Appropriate Breast Cancer Screening":
 // exists "Mammography Performed Within 27 Months"
@@ -180,6 +183,6 @@ define "Mammogram within 24 months":
   exists "Mammography Performed" P
   where P.issued >= ("Reference Date" - 2 years)
 
-define "Mammogram within 27 months": // this may not be all that useful
-  exists "Mammography Performed" P
-  where P.issued >= ("Reference Date" - 27 months)
+// define "Mammogram within 27 months": // this may not be all that useful
+//   exists "Mammography Performed" P
+//   where P.issued >= ("Reference Date" - 27 months)

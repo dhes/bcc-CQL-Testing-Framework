@@ -1,4 +1,4 @@
-reusable_conditions:
+reusable_conditions_example:
 - &painRelatedConditions
   - resourceType: Condition
     code: SNOMED#203082005 Fibromyalgia (disorder)

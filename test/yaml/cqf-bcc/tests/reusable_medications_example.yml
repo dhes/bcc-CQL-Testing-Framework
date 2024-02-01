@@ -1,4 +1,4 @@
-reusable_medications:
+reusable_medications_example:
 - &nonOpioidMedicationRequests
   - resourceType: MedicationRequest
     code: RXNORM#104474 Aspirin 75 MG Oral Tablet

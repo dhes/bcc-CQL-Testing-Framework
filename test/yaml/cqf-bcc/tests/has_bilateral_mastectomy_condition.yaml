@@ -1,7 +1,7 @@
 ---
-name: has_breast_cancer
+name: has_bilateral_mastectomy_condition
 externalData:
-- reusable_breast_cancer_conditions
+- reusable_bilateral_mastectomy_conditions
 data:
 -
   resourceType: Patient
@@ -34,8 +34,9 @@ data:
   method: SNOMEDCT#24623002 Screening mammography (procedure)
   note:
   - text: BIRADS Category 2 (Benign)
+
 -
-  $iterate: *breastCancerDiagnosis
+  $iterate: *bilateralMastectomyCondition
 
 results:
-  Recommendation is applicable: false
+  Recommendation is applicable: true

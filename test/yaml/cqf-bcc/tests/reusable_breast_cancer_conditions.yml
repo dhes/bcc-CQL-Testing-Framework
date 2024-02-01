@@ -5,424 +5,509 @@ reusable_breast_cancer_conditions:
     code: SNOMEDCT#1080101000119105 Infiltrating duct carcinoma of left female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080111000119108 Infiltrating ductal carcinoma of central portion of left female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080151000119109 Infiltrating ductal carcinoma of upper inner quadrant of left female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080161000119106 Infiltrating ductal carcinoma of upper outer quadrant of left female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080181000119102 Infiltrating duct carcinoma of right female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080191000119104 Infiltrating ductal carcinoma of central portion of right female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080231000119108 Infiltrating ductal carcinoma of upper inner quadrant of right female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#1080241000119104 Infiltrating ductal carcinoma of upper outer quadrant of right female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#109886000 Overlapping malignant neoplasm of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#15635761000119103 Infiltrating duct carcinoma of bilateral female breasts (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188147009 Malignant neoplasm of nipple and areola of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188151006 Malignant neoplasm of central part of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188152004 Malignant neoplasm of upper-inner quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188153009 Malignant neoplasm of lower-inner quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188154003 Malignant neoplasm of upper-outer quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188155002 Malignant neoplasm of lower-outer quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188156001 Malignant neoplasm of axillary tail of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188157005 Malignant neoplasm of overlapping sites of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#188159008 Malignant neoplasm of ectopic site of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#254837009 Malignant neoplasm of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#254838004 Carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#254839007 Scirrhous carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#254840009 Inflammatory carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#278054005 Lobular carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#286893002 "Carcinoma of breast - upper, inner quadrant (disorder)"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#286894008 "Carcinoma of breast - lower, inner quadrant (disorder)"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#286895009 "Carcinoma of breast - upper, outer quadrant (disorder)"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#286896005 "Carcinoma breast - lower, outer quadrant (disorder)"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#286897001 Carcinoma of breast - axillary tail (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#372064008 Malignant neoplasm of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#372092003 Primary malignant neoplasm of axillary tail of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#372094002 Malignant neoplasm of axillary tail of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#372137005 Primary malignant neoplasm of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373080008 Malignant neoplasm of breast lower inner quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373081007 Malignant neoplasm of breast lower outer quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373082000 Malignant neoplasm of breast upper inner quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373083005 Malignant neoplasm of breast upper outer quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373088001 Primary malignant neoplasm of breast upper outer quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373089009 Primary malignant neoplasm of breast upper inner quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373090000 Primary malignant neoplasm of breast lower inner quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#373091001 Primary malignant neoplasm of breast lower outer quadrant (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#408643008 Infiltrating duct carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#444604002 Carcinoma of breast with ductal and lobular features (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#444712000 Mucinous carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#447782002 Malignant epithelial neoplasm of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#448952004 Infiltrating duct carcinoma of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#708921005 Carcinoma of central portion of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#713609000 Invasive carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#722524005 Primary invasive pleomorphic lobular carcinoma of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#722832009 Primary solid papillary carcinoma with invasion of breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93680004 Primary malignant neoplasm of areola of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93745008 Primary malignant neoplasm of central portion of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93776002 Primary malignant neoplasm of ectopic female breast tissue (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93796005 Primary malignant neoplasm of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93874009 Primary malignant neoplasm of lower inner quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93876006 Primary malignant neoplasm of lower outer quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#93924008 Primary malignant neoplasm of nipple of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: SNOMEDCT#94115006 Primary malignant neoplasm of upper inner quadrant of female breast (disorder)
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.011 "Malignant neoplasm of nipple and areola, right female breast"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.012 "Malignant neoplasm of nipple and areola, left female breast"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.019 "Malignant neoplasm of nipple and areola, unspecified female breast"
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.111 Malignant neoplasm of central portion of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.112 Malignant neoplasm of central portion of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.119 Malignant neoplasm of central portion of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.211 Malignant neoplasm of upper-inner quadrant of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.212 Malignant neoplasm of upper-inner quadrant of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.219 Malignant neoplasm of upper-inner quadrant of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.311 Malignant neoplasm of lower-inner quadrant of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.312 Malignant neoplasm of lower-inner quadrant of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.319 Malignant neoplasm of lower-inner quadrant of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.411 Malignant neoplasm of upper-outer quadrant of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.412 Malignant neoplasm of upper-outer quadrant of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.419 Malignant neoplasm of upper-outer quadrant of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.511 Malignant neoplasm of lower-outer quadrant of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.512 Malignant neoplasm of lower-outer quadrant of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.519 Malignant neoplasm of lower-outer quadrant of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.611 Malignant neoplasm of axillary tail of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.612 Malignant neoplasm of axillary tail of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.619 Malignant neoplasm of axillary tail of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.811 Malignant neoplasm of overlapping sites of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.812 Malignant neoplasm of overlapping sites of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.819 Malignant neoplasm of overlapping sites of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.911 Malignant neoplasm of unspecified site of right female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.912 Malignant neoplasm of unspecified site of left female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
   - resourceType: Condition
     code: ICD10CM#C50.919 Malignant neoplasm of unspecified site of unspecified female breast
     onsetDateTime: 2014-09-05
     verificationStatus: #confirmed
+    clinicalStatus: #active
 
