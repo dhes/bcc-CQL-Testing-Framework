@@ -31,3 +31,12 @@ Genetic susceptibility to malignant neoplasm of breast
 
 ```
 
+Who needs to pay royalties to use [CPT content](https://www.ama-assn.org/practice-management/cpt/ama-cpt-licensing-overview)?
+
+[Here](https://www.hl7.org/fhir/us/breast-radiology/2020MAY/StructureDefinition-MGBreastDensity.html) is a FHIR link for breast density categories. [Here](http://www.acr.org/Quality-Safety/Resources/BIRADS) is a link to the Bi-Rads atlas. 
+
+It sure looks like BI-RADS is used in all sorts of breast imaging, including 2D and 3D. So for standard mammo we have [this](https://loinc.org/24606-6/) loinc and for digital mammo (which seems to be rapidly taking over) we have [this](https://loinc.org/72142-3/). 
+
+Here is a [summary](https://loinc.org/search/?t=1&s=breast+screening) of all breast screening codes, some not applicable. 
+
+So now begins the process of retiring the mammogram value set for two specific loinc codes: 72142-3 and 24606-6. 

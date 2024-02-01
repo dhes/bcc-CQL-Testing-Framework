@@ -16,3 +16,8 @@ valueset "Mammography": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.
 valueset "Breast Cancer Diagnoses": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1116.185'
 // valueset "ONC Administrative Sex" 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1'
 // valueset "Outpatient" 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1087'
+
+codesystem "LOINC": 'http://loinc.org'
+code "Mammogram breast screening": '24606-6' from "LOINC" display 'MG Breast Screening'
+code "DBT breast screening": '72142-3' from "LOINC" display 'DBT Breast - bilateral screening'
+
