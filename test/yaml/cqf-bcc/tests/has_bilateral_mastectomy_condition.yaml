@@ -39,4 +39,4 @@ data:
   $iterate: *bilateralMastectomyCondition
 
 results:
-  Recommendation is applicable: true
+  Due for screening mammogram: true

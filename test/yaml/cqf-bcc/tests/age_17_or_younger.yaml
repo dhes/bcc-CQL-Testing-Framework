@@ -1,4 +1,8 @@
 ---
+# This example is based on the boilerplates provided by the github source. 
+# It doesn't follow any particular breast cancer screening logic but the result should pass. 
+# It fails inclusion on both age and gender. 
+# For this to work properly you need cqlt.yaml to have `options: date: "2024-01-01T00:00:00+00:00"`
 name: Aged 17 years or younger
 
 data:
@@ -19,8 +23,5 @@ data:
   authoredOn: 2018-12-05
 
 results:
-  Recommendation is applicable: false
-  # Get Card Summary: Up to date or not a candidate.
-  # Get Card Indicator: null
-  # Get Card Detail: Up to date or not a candidate. 
+  Due for screening mammogram: false
 

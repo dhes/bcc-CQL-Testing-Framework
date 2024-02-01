@@ -38,4 +38,4 @@ data:
   $iterate: *breastCancerDiagnosis
 
 results:
-  Recommendation is applicable: false
+  Due for screening mammogram: false

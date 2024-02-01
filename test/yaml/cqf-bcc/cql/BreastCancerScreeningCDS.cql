@@ -91,7 +91,7 @@ define "Months elapsed":
 //   then 'mammogram up to date'
 //   else 'mammogram due'
 
-define "Recommendation is applicable": //"applicible" in the sense that this patient is eligible and due. 
+define "Due for screening mammogram": //"applicible" in the sense that this patient is eligible and due. 
   "Alive"
 	and "Active"
   and "Woman aged 50 to 74 years inclusive" 
@@ -99,25 +99,25 @@ define "Recommendation is applicable": //"applicible" in the sense that this pat
   and not BCE."Mammogram within 24 months"
 
 define "Get Card Summary":
-  if "Recommendation is applicable" then
-    'Due for mammogram'
+  if "Due for screening mammogram" then
+    'Due for screening mammogram'
   else
-    'Up to date or not a candidate.'
+    null
 
 define "Get Card Indicator":
   // if "Is Recommendation Applicable" then
-  if "Recommendation is applicable"
+  if "Due for screening mammogram"
   then 'asap'
   else null
 
 define "Get Card Detail":
-  if "Recommendation is applicable" then
-    'This patient is up to date with breast cancer screening, with ' + Rationale + '.'
+  if "Due for screening mammogram" then
+    'This patient is due for mammogram, with ' + Rationale + '.'
   else
-    'This patient either is not a candidate for breast cancer screening, or is a candidate but is overdue, with ' + Rationale + '.'
+    null
 
 define Rationale:
-  if "Recommendation is applicable"
+  if "Due for screening mammogram"
   then Coalesce({
     ' the most recent mammogram performed on ' + ToString(date from BCE."Most Recent Mammogram".issued) + '.',
     ' no mammogram on file'

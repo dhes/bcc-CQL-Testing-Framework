@@ -1,4 +1,8 @@
 ---
+# This example is based on the boilerplates provided by the github source. 
+# It doesn't follow any particular breast cancer screening logic but the result should pass. 
+# It fails inclusion on gender. 
+# For this to work properly you need cqlt.yaml to have `options: date: "2024-01-01T00:00:00+00:00"`
 name: Aged 65 years or older
 
 data:
@@ -11,4 +15,4 @@ data:
   deceasedBoolean: false
 
 results:
-  Recommendation is applicable: false
+  Due for screening mammogram: false

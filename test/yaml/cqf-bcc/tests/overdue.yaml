@@ -35,4 +35,4 @@ data:
   - text: BIRADS Category 2 (Benign)
 
 results:
-  Recommendation is applicable: true
+  Due for screening mammogram: true
