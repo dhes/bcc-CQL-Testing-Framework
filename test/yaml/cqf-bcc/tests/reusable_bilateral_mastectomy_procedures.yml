@@ -1,0 +1,67 @@
+reusable_bilateral_mastectomy_procedures:
+# valueset "Bilateral Mastectomy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005'
+- &bilateralMastectomyProcedure
+  - resourceType: Procedure
+    code: ICD10PCS#0HTV0ZZ Resection of Bilateral Breast, Open Approach
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#14693006 Subcutaneous mammectomy of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#14714006 Excision of bilateral breasts with excision of bilateral regional lymph nodes (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#17086001 Modified radical mastectomy, bilateral (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#22418005 Simple mastectomy of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#27865001 Excision of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#456903003 Extended radical mastectomy of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#52314009 Extended simple mastectomy of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#60633004 Subcutaneous mammectomy of bilateral breasts with synchronous implants (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#726636007 Prophylactic bilateral mastectomy (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#76468001 Radical mastectomy of bilateral breasts (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#836436008 Simple mastectomy of bilateral breasts using robotic assistance (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
+
+  - resourceType: Procedure
+    code: SNOMEDCT#870629001 Excision of bilateral breasts for female to male transsexual (procedure)
+    performedDateTime:  2023-01-01
+    status: completed
