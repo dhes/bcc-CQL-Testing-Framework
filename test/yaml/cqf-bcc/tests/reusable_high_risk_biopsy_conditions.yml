@@ -1,0 +1,27 @@
+reusable_high_risk_biopsy_conditions:
+# concept: "High risk biopsy"
+# all test conditions are 'confirmed' and 'active' by default
+- &highRiskBiopsies
+  - resourceType: Condition
+    code: ICD10#D05.10 Atypical ductal hyperplasia of the breast
+    onsetDateTime: 2022-09-05
+#    verificationStatus: #confirmed
+#    clinicalStatus: #active
+
+  - resourceType: Condition
+    code: SNOMEDCT#427785007 Atypical hyperplasia of lactiferous duct (disorder)
+    onsetDateTime: 2022-09-05
+#    verificationStatus: #confirmed
+#    clinicalStatus: #active
+
+  - resourceType: Condition
+    code: SNOMEDCT#450697004 Atypical lobular hyperplasia of breast (disorder)
+    onsetDateTime: 2022-09-05
+#    verificationStatus: #confirmed
+#    clinicalStatus: #active
+
+  - resourceType: Condition
+    code: SNOMEDCT#109888004 Lobular carcinoma in situ of breast (disorder)
+    onsetDateTime: 2022-09-05
+#    verificationStatus: #confirmed
+#    clinicalStatus: #active
