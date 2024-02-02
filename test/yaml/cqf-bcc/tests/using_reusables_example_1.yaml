@@ -1,3 +1,8 @@
+
+# This is one of the boilerplates from the github repo. 
+# It doesn't follow any particular testing strategy. 
+# It fails inclusion on gender. 
+# For this to work properly you need cqlt.yaml to have `options: date: "2024-01-01T00:00:00+00:00"`
 ---
 name: using_reusables_example_1
 
@@ -32,6 +37,7 @@ data:
   $import: *painRelatedConditions
 
 results:
+  Due for screening mammogram: false
   # To check for strict equality, simply list desired output objects under `results`.
   # ReportConditionsAssociatedWithChronicPain: *reportedConditions
   # Can also verify certain output object properties by using `$should` expressions.

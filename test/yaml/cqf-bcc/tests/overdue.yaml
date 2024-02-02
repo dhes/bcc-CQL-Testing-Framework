@@ -1,3 +1,5 @@
+# This case tests the boundaries of overdue. 
+# The most recent mammogram was done exactly two years ago. 
 ---
 name: overdue
 

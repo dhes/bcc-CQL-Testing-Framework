@@ -230,6 +230,24 @@
                } ]
             }
          }, {
+            "name" : "Bilateral Mastectomy Procedure from elements",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Bilateral Mastectomy Procedure",
+               "libraryName" : "BCE",
+               "type" : "ExpressionRef"
+            }
+         }, {
+            "name" : "Bilateral Mastectomy Diagnosis from elements",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "name" : "Bilateral Mastectomy Diagnosis",
+               "libraryName" : "BCE",
+               "type" : "ExpressionRef"
+            }
+         }, {
             "name" : "History of bilateral mastectomy",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -324,7 +342,7 @@
                } ]
             }
          }, {
-            "name" : "Recommendation is applicable",
+            "name" : "Due for screening mammogram",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -369,18 +387,20 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Recommendation is applicable",
+                  "name" : "Due for screening mammogram",
                   "type" : "ExpressionRef"
                },
                "then" : {
                   "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "Due for mammogram",
+                  "value" : "Due for screening mammogram",
                   "type" : "Literal"
                },
                "else" : {
-                  "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                  "value" : "Up to date or not a candidate.",
-                  "type" : "Literal"
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
                }
             }
          }, {
@@ -390,7 +410,7 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Recommendation is applicable",
+                  "name" : "Due for screening mammogram",
                   "type" : "ExpressionRef"
                },
                "then" : {
@@ -413,7 +433,7 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Recommendation is applicable",
+                  "name" : "Due for screening mammogram",
                   "type" : "ExpressionRef"
                },
                "then" : {
@@ -483,7 +503,7 @@
             "expression" : {
                "type" : "If",
                "condition" : {
-                  "name" : "Recommendation is applicable",
+                  "name" : "Due for screening mammogram",
                   "type" : "ExpressionRef"
                },
                "then" : {
@@ -492,7 +512,7 @@
                      "type" : "Concatenate",
                      "operand" : [ {
                         "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "This patient is up to date with breast cancer screening, with ",
+                        "value" : "This patient is due for mammogram, with ",
                         "type" : "Literal"
                      }, {
                         "name" : "Rationale",
@@ -505,22 +525,11 @@
                   } ]
                },
                "else" : {
-                  "type" : "Concatenate",
-                  "operand" : [ {
-                     "type" : "Concatenate",
-                     "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "This patient either is not a candidate for breast cancer screening, or is a candidate but is overdue, with ",
-                        "type" : "Literal"
-                     }, {
-                        "name" : "Rationale",
-                        "type" : "ExpressionRef"
-                     } ]
-                  }, {
-                     "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                     "value" : ".",
-                     "type" : "Literal"
-                  } ]
+                  "asType" : "{urn:hl7-org:elm-types:r1}String",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Null"
+                  }
                }
             }
          } ]

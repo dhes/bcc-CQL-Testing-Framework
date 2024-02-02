@@ -1,3 +1,5 @@
+# This patient would be due for a mammogram but is excluded due to 
+# bilateral mastectomy (recorded as a Procedure). 
 ---
 name: has_bilateral_mastectomy_procedure
 externalData:

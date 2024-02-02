@@ -1,5 +1,8 @@
+# It doesn't follow any particular testing strategy. 
+# It fails inclusion on gender. 
+# For this to work properly you need cqlt.yaml to have `options: date: "2024-01-01T00:00:00+00:00"`
 ---
-name: Second example of using reusable resources
+name: using_reusables_example_2
 
 # Referenced resources don't have to be included in the test case file. They can exist
 # in separate YAML files as long as they are named under externalData.
@@ -40,6 +43,7 @@ data:
 
 
 results:
+  Due for screening mammogram: false
   # Cannot check for strict equality in this example, since each test case created by
   # `$iterate` has a different output Summary object.
 

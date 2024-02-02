@@ -7,6 +7,8 @@ include FHIRCommon version '4.0.1' called FC
 
 include BreastCancerConcepts called Bx
 
+// valueset BreastCancerScreeningLOINCCodes: '24606-6', '72142-3'
+
 // parameter "Measurement Period" Interval<DateTime>
 // default Interval[Now() - 1 year, Now()]
 
@@ -82,7 +84,7 @@ define "aged 52 to 74 years inclusive": // AKA "Initial Population"
 
 define "Bilateral Mastectomy Procedure":
   [Procedure: Bx."Bilateral Mastectomy"] BilateralMastectomyPerformed // the procedure
-    where BilateralMastectomyPerformed.status='completed'
+    where BilateralMastectomyPerformed.status~'completed'
 //  and Global."NormalizeInterval" ( BilateralMastectomyPerformed.relevantDatetime, BilateralMastectomyPerformed.relevantPeriod ) ends on or before
 // end of "Measurement Period"
 
@@ -155,9 +157,19 @@ define "Breast Cancer Diagnosis":
   where Dx.verificationStatus ~ FC."confirmed"
   and Dx.clinicalStatus ~ FC."active")
 
+
+// define BreastCancerScreeningLOINCCodes: List<Code> {
+//   Bx."2D Mammogram breast screening",
+//   Bx."DBT breast screening"
+// }
+
 define "Mammography Performed":
-[Observation: Bx."Mammography"] Mammogram
-where Mammogram.status = 'final'
+// This worked with the old valueset "Mammogram"
+// [Observation: Bx."Mammography"] Mammogram
+// where O.status = 'final'
+  [Observation: Bx."Mammography screening"] O
+// where O.code in BreastCancerScreeningLOINCCodes
+where O.status = 'final'
 
 define function MostRecent(observations List<Observation>, asOf DateTime):
   First(

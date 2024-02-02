@@ -61,6 +61,12 @@ define "Woman aged 50 to 74 years inclusive":
 //   // and BCE."Is female"
 //   // and not BCE."Has Active Malignant Neoplasm"
 
+define "Bilateral Mastectomy Procedure from elements":
+BCE."Bilateral Mastectomy Procedure"
+
+define "Bilateral Mastectomy Diagnosis from elements":
+BCE."Bilateral Mastectomy Diagnosis"
+
 define "History of bilateral mastectomy":
   BCE."Bilateral Mastectomy Performed"
 

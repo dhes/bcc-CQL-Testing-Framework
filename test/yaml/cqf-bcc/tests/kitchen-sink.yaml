@@ -1,3 +1,7 @@
+# This example is based on the boilerplates provided by the github source. 
+# It doesn't follow any particular testing strategy. 
+# It fails inclusion on gender. 
+# For this to work properly you need cqlt.yaml to have `options: date: "2024-01-01T00:00:00+00:00"`
 ---
 name: Has Everything But the Kitchen Sink
 

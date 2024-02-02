@@ -1,4 +1,6 @@
 ---
+# This example is based on the boilerplates provided by the github source. 
+# It serves to show how CarePlans can be represented in yaml. 
 resourceType: CarePlan
 id: example
 text:
