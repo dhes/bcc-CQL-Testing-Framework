@@ -4,14 +4,14 @@ reusable_bilateral_mastectomy_conditions:
   - resourceType: Condition
     code: SNOMEDCT#136071000119101 History of bilateral prophylactic mastectomy (situation)
     onsetDateTime:  2023-01-01
-    verificationStatus: confirmed
+    verificationStatus: http://terminology.hl7.org/CodeSystem/condition-ver-status#confirmed Confirmed
 
   - resourceType: Condition
     code: SNOMEDCT#428529004 History of bilateral mastectomy (situation)
     onsetDateTime:  2023-01-01
-    verificationStatus: confirmed
+    verificationStatus: http://terminology.hl7.org/CodeSystem/condition-ver-status#confirmed Confirmed
 
   - resourceType: Condition
     code: ICD10CM#Z90.13 Acquired absence of bilateral breasts and nipples
     onsetDateTime:  2023-01-01
-    verificationStatus: confirmed
+    verificationStatus: http://terminology.hl7.org/CodeSystem/condition-ver-status#confirmed Confirmed
