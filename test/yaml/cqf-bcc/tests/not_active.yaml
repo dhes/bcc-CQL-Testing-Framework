@@ -1,0 +1,14 @@
+# This patient would be due for a mammogram but is not an active patient. 
+---
+name: not_active
+data:
+-
+  resourceType: Patient
+  name: Dorothy Dere
+  birthDate: 1968-01-01
+  gender: female
+  active: false
+  deceasedBoolean: false
+
+results:
+  Due for screening mammogram: false

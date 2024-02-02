@@ -287,31 +287,44 @@
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
-               "type" : "Equal",
-               "signature" : [ {
-                  "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                  "type" : "NamedTypeSpecifier"
-               }, {
-                  "name" : "{urn:hl7-org:elm-types:r1}Boolean",
-                  "type" : "NamedTypeSpecifier"
-               } ],
-               "operand" : [ {
-                  "name" : "ToBoolean",
-                  "libraryName" : "FHIRHelpers",
-                  "type" : "FunctionRef",
+               "type" : "If",
+               "condition" : {
+                  "type" : "Equal",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
                   "operand" : [ {
-                     "path" : "active",
-                     "type" : "Property",
-                     "source" : {
-                        "name" : "Patient",
-                        "type" : "ExpressionRef"
-                     }
+                     "name" : "ToBoolean",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "active",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "Patient",
+                           "type" : "ExpressionRef"
+                        }
+                     } ]
+                  }, {
+                     "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "value" : "true",
+                     "type" : "Literal"
                   } ]
-               }, {
+               },
+               "then" : {
                   "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
                   "value" : "true",
                   "type" : "Literal"
-               } ]
+               },
+               "else" : {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "value" : "false",
+                  "type" : "Literal"
+               }
             }
          }, {
             "name" : "Woman",

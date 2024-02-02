@@ -1,0 +1,14 @@
+# This patient would be due for a mammogram but is deceased :(
+---
+name: deceased
+data:
+-
+  resourceType: Patient
+  name: Dorothy Dere
+  birthDate: 1968-01-01
+  gender: female
+  active: true
+  deceasedBoolean: true
+
+results:
+  Due for screening mammogram: false
