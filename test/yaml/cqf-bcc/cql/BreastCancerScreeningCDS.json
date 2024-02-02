@@ -127,6 +127,23 @@
                "name" : "SNOMEDCT",
                "libraryName" : "FC"
             }
+         }, {
+            "name" : "Genetic susceptibility to malignant neoplasm of breast",
+            "id" : "Z15.01",
+            "display" : "Genetic susceptibility to malignant neoplasm of breast",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD10"
+            }
+         }, {
+            "name" : "Hereditary breast and ovarian cancer syndrome (disorder)",
+            "id" : "718220008",
+            "display" : "Hereditary breast and ovarian cancer syndrome (disorder)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT",
+               "libraryName" : "FC"
+            }
          } ]
       },
       "concepts" : {
@@ -150,6 +167,14 @@
                "name" : "Atypical lobular hyperplasia of breast (disorder)"
             }, {
                "name" : "Lobular carcinoma in situ of breast (disorder)"
+            } ]
+         }, {
+            "name" : "Genetic susceptibility",
+            "accessLevel" : "Public",
+            "code" : [ {
+               "name" : "Genetic susceptibility to malignant neoplasm of breast"
+            }, {
+               "name" : "Hereditary breast and ovarian cancer syndrome (disorder)"
             } ]
          } ]
       },
@@ -737,6 +762,106 @@
                }
             }
          }, {
+            "name" : "Genetic susceptibility history",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "signature" : [ {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{http://hl7.org/fhir}Condition",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               } ],
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "C",
+                     "expression" : {
+                        "dataType" : "{http://hl7.org/fhir}Condition",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                        "codeProperty" : "code",
+                        "codeComparator" : "~",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "path" : "codes",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "Genetic susceptibility",
+                              "type" : "ConceptRef"
+                           }
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "Equivalent",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "ToConcept",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "verificationStatus",
+                              "scope" : "C",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "ToConcept",
+                           "signature" : [ {
+                              "name" : "{urn:hl7-org:elm-types:r1}Code",
+                              "type" : "NamedTypeSpecifier"
+                           } ],
+                           "operand" : {
+                              "name" : "confirmed",
+                              "libraryName" : "FC",
+                              "type" : "CodeRef"
+                           }
+                        } ]
+                     }, {
+                        "type" : "Equivalent",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "ToConcept",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "clinicalStatus",
+                              "scope" : "C",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "ToConcept",
+                           "signature" : [ {
+                              "name" : "{urn:hl7-org:elm-types:r1}Code",
+                              "type" : "NamedTypeSpecifier"
+                           } ],
+                           "operand" : {
+                              "name" : "active",
+                              "libraryName" : "FC",
+                              "type" : "CodeRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }
+            }
+         }, {
             "name" : "Excluded",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -745,14 +870,20 @@
                "operand" : [ {
                   "type" : "Or",
                   "operand" : [ {
-                     "name" : "History of bilateral mastectomy",
-                     "type" : "ExpressionRef"
+                     "type" : "Or",
+                     "operand" : [ {
+                        "name" : "History of bilateral mastectomy",
+                        "type" : "ExpressionRef"
+                     }, {
+                        "name" : "Breast Cancer Diagnosis",
+                        "type" : "ExpressionRef"
+                     } ]
                   }, {
-                     "name" : "Breast Cancer Diagnosis",
+                     "name" : "History of high risk biopsy",
                      "type" : "ExpressionRef"
                   } ]
                }, {
-                  "name" : "History of high risk biopsy",
+                  "name" : "Genetic susceptibility history",
                   "type" : "ExpressionRef"
                } ]
             }

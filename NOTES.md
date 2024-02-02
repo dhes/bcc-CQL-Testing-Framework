@@ -50,3 +50,102 @@ ICD10 codes for high-risk breast biopsy.
 > Lobular carcinoma in situ of breast (disorder) - SCTID: 109888004, (no ICD10)
 
 A quick look at vsac reveals no code groupings like this. 
+
+Now for BRCA:
+
+Condition codes:
+
+>ICD10 Z15.01 - Genetic susceptibility to malignant neoplasm of breast
+>SNOMED 718220008 Hereditary breast and ovarian cancer syndrome (disorder)
+>718220008 | Hereditary breast and ovarian cancer syndrome (disorder) |
+>  en   Hereditary breast and ovarian cancer syndrome (disorder)
+>.  en   Hereditary breast and ovarian cancer syndrome
+>  en   Breast cancer is the most common cancer in women, accounting for 25% of all new cases of cancer. Most cases are sporadic, while 5-10% are estimated to be due to an inherited predisposition. Autosomal dominant alterations in two genes, BRCA1 and BRCA2, are likely to account for most familial cases of early-onset breast and/or ovarian cancer and for 3-4% of all breast cancer. The lifetime risk of developing hereditary breast cancer and/or ovarian cancer can reach 80%. For a given mutation in the susceptibility gene, disease severity and age at onset show great variability within and between breast cancer families, suggesting the involvement of other genetic as well as non-genetic factors.
+
+Observation codes:
+
+>BRCA1 gene mutation detected (finding) SCTID: 412734009 
+>BRCA2 gene mutation detected (finding) SCT ID: 412738007
+
+Here's a sampling of the LOINC codes in case you want to exclude based on test results:
+```
+ 	21637-4 	BRCA1 gene.c.185 del AG [presence] in Blood or Tissue by Molecular genetics method
+	21638-2 	BRCA1 gene c.5382insC [Presence] in Blood or Tissue by Molecular genetics method
+	21640-8 	BRCA2 gene c.6174delT [Presence] in Blood or Tissue by Molecular genetics method 
+	21639-0 	BRCA1 gene mutations tested for in Blood or Tissue by Molecular genetics
+	21636-6 	BRCA1 gene mutations found [Identifier] in Blood or Tissue by Molecular genetics method
+	59041-4 	BRCA1+BRCA2 gene mutations tested for in Blood or Tissue by Molecular genetics method
+	50995-0 	BRCA1+BRCA2 gene targeted mutation analysis in Blood or Tissue by Molecular genetics method
+	38531-0 	BRCA2 gene mutations tested for in Blood or Tissue by Molecular genetics method
+	38530-2 	BRCA2 gene mutations found [Identifier] in Blood or Tissue by Molecular genetics method Nominal
+	79207-7 	BRCA1 gene mutation analysis limited to known familial mutations in Blood or Tissue by Molecular genetics method
+	79208-5 	BRCA2 gene mutation analysis limited to known familial mutations in Blood or Tissue by Molecular genetics method
+	94191-4 	BRCA1+BRCA2 gene deletion+duplication and full mutation analysis in Blood or Tissue by Molecular genetics method
+
+ChatGPT suggests this Observation resource:
+```
+{
+  "resourceType": "Observation",
+  "id": "brca-observation",
+  "status": "final",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+          "code": "laboratory",
+          "display": "Laboratory"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "http://loinc.org",
+        "code": "LOINC_CODE_FOR_BRCA_TEST", // Replace with actual LOINC code for BRCA1/BRCA2 testing
+        "display": "BRCA1 and BRCA2 gene mutation analysis"
+      }
+    ],
+    "text": "BRCA1/BRCA2 Gene Mutation Test"
+  },
+  "subject": {
+    "reference": "Patient/example-patient" // Replace with actual patient reference
+  },
+  "effectiveDateTime": "2024-02-02", // Replace with the actual date of the test
+  "issued": "2024-02-02T12:10:00Z", // Replace with the timestamp when the result was issued
+  "performer": [
+    {
+      "reference": "Practitioner/example-practitioner" // Replace with actual performer reference
+    }
+  ],
+  "valueString": "Positive for BRCA1/BRCA2 mutation",
+  "interpretation": [
+    {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+          "code": "POS",
+          "display": "Positive"
+        }
+      ],
+      "text": "Positive test result indicates a mutation in either the BRCA1 or BRCA2 gene."
+    }
+  ],
+  "note": [
+    {
+      "authorReference": {
+        "reference": "Practitioner/example-practitioner"
+      },
+      "time": "2024-02-02T12:10:00Z",
+      "text": "Patient has tested positive for a mutation in the BRCA1 or BRCA2 gene. Genetic counseling and further assessment of cancer risk are recommended."
+    }
+  ]
+}
+```
+
+So maybe and observation like this:
+```
+
+```
+

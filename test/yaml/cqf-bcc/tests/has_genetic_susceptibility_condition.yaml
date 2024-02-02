@@ -1,0 +1,22 @@
+# This patient would be due for a mammogram but is excluded due to 
+# a diagnosis of breast cancer. 
+---
+name: has_genetic_susceptibility_condition
+externalData:
+- reusable_genetic_susceptibility_conditions
+- reusable_overdue_by_one_year
+data:
+-
+  resourceType: Patient
+  name: Dorothy Dere
+  birthDate: 1968-01-01
+  gender: female
+  active: true
+  deceasedBoolean: false
+- 
+  $import: *overdueByOneYear
+-
+  $iterate: *geneticSusceptibilityCondition
+
+results:
+  Due for screening mammogram: false

@@ -1,0 +1,11 @@
+reusable_genetic_susceptibility_conditions:
+# concept "Genetic susceptibility"
+- &geneticSusceptibilityCondition
+# verificationStatus is set to 'confirmed' by default
+  - resourceType: Condition
+    code: ICD10#Z15.01 Genetic susceptibility to malignant neoplasm of breast
+    onsetDateTime:  2023-01-01
+
+  - resourceType: Condition
+    code: SNOMEDCT#718220008 Hereditary breast and ovarian cancer syndrome (disorder)
+    onsetDateTime:  2023-01-01

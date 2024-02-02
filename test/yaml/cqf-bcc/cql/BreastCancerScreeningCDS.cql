@@ -41,6 +41,13 @@ concept "High risk biopsy": {
 	"Lobular carcinoma in situ of breast (disorder)"
 }
 
+code "Genetic susceptibility to malignant neoplasm of breast": 'Z15.01' from "ICD10" display 'Genetic susceptibility to malignant neoplasm of breast'
+code "Hereditary breast and ovarian cancer syndrome (disorder)": '718220008' from FC."SNOMEDCT" display 'Hereditary breast and ovarian cancer syndrome (disorder)'
+concept "Genetic susceptibility": {
+	"Genetic susceptibility to malignant neoplasm of breast",
+	"Hereditary breast and ovarian cancer syndrome (disorder)"
+}
+
 context Patient
 
 // First and foremost, are you alive? Are you an active patient? 
@@ -93,11 +100,16 @@ define "History of high risk biopsy":
 		where C.verificationStatus ~ FC."confirmed"
 		and C.clinicalStatus ~ FC."active")
 
+define "Genetic susceptibility history":
+	exists ([Condition: "Genetic susceptibility"] C
+		where C.verificationStatus ~ FC."confirmed"
+		and C.clinicalStatus ~ FC."active")
 
 define "Excluded":
   "History of bilateral mastectomy"
   or "Breast Cancer Diagnosis"
   or "History of high risk biopsy"
+	or "Genetic susceptibility history"
 
 define "Mammography Performed":
 // This worked with the old valueset "Mammogram"
