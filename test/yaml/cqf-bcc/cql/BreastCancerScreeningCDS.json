@@ -68,8 +68,8 @@
       },
       "codeSystems" : {
          "def" : [ {
-            "name" : "LOINC",
-            "id" : "http://loinc.org",
+            "name" : "ICD10",
+            "id" : "http://hl7.org/fhir/sid/icd-10",
             "accessLevel" : "Public"
          } ]
       },
@@ -80,7 +80,8 @@
             "display" : "MG Breast Screening",
             "accessLevel" : "Public",
             "codeSystem" : {
-               "name" : "LOINC"
+               "name" : "LOINC",
+               "libraryName" : "FC"
             }
          }, {
             "name" : "DBT Breast - bilateral screening",
@@ -88,7 +89,43 @@
             "display" : "DBT Breast - bilateral screening",
             "accessLevel" : "Public",
             "codeSystem" : {
-               "name" : "LOINC"
+               "name" : "LOINC",
+               "libraryName" : "FC"
+            }
+         }, {
+            "name" : "Atypical ductal hyperplasia of the breast",
+            "id" : "D05.10",
+            "display" : "Atypical ductal hyperplasia (ADH) of the breast",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "ICD10"
+            }
+         }, {
+            "name" : "Atypical hyperplasia of lactiferous duct (disorder)",
+            "id" : "427785007",
+            "display" : "Atypical hyperplasia of lactiferous duct (disorder)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT",
+               "libraryName" : "FC"
+            }
+         }, {
+            "name" : "Atypical lobular hyperplasia of breast (disorder)",
+            "id" : "450697004",
+            "display" : "Atypical lobular hyperplasia of breast (disorder)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT",
+               "libraryName" : "FC"
+            }
+         }, {
+            "name" : "Lobular carcinoma in situ of breast (disorder)",
+            "id" : "109888004",
+            "display" : "Lobular carcinoma in situ of breast (disorder)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT",
+               "libraryName" : "FC"
             }
          } ]
       },
@@ -101,6 +138,18 @@
                "name" : "MG Breast Screening"
             }, {
                "name" : "DBT Breast - bilateral screening"
+            } ]
+         }, {
+            "name" : "High risk biopsy",
+            "accessLevel" : "Public",
+            "code" : [ {
+               "name" : "Atypical ductal hyperplasia of the breast"
+            }, {
+               "name" : "Atypical hyperplasia of lactiferous duct (disorder)"
+            }, {
+               "name" : "Atypical lobular hyperplasia of breast (disorder)"
+            }, {
+               "name" : "Lobular carcinoma in situ of breast (disorder)"
             } ]
          } ]
       },
@@ -588,16 +637,122 @@
                }
             }
          }, {
+            "name" : "History of high risk biopsy",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Exists",
+               "signature" : [ {
+                  "type" : "ListTypeSpecifier",
+                  "elementType" : {
+                     "name" : "{http://hl7.org/fhir}Condition",
+                     "type" : "NamedTypeSpecifier"
+                  }
+               } ],
+               "operand" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "C",
+                     "expression" : {
+                        "dataType" : "{http://hl7.org/fhir}Condition",
+                        "templateId" : "http://hl7.org/fhir/StructureDefinition/Condition",
+                        "codeProperty" : "code",
+                        "codeComparator" : "~",
+                        "type" : "Retrieve",
+                        "codes" : {
+                           "path" : "codes",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "High risk biopsy",
+                              "type" : "ConceptRef"
+                           }
+                        }
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "Equivalent",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "ToConcept",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "verificationStatus",
+                              "scope" : "C",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "ToConcept",
+                           "signature" : [ {
+                              "name" : "{urn:hl7-org:elm-types:r1}Code",
+                              "type" : "NamedTypeSpecifier"
+                           } ],
+                           "operand" : {
+                              "name" : "confirmed",
+                              "libraryName" : "FC",
+                              "type" : "CodeRef"
+                           }
+                        } ]
+                     }, {
+                        "type" : "Equivalent",
+                        "signature" : [ {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        }, {
+                           "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                           "type" : "NamedTypeSpecifier"
+                        } ],
+                        "operand" : [ {
+                           "name" : "ToConcept",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "clinicalStatus",
+                              "scope" : "C",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "type" : "ToConcept",
+                           "signature" : [ {
+                              "name" : "{urn:hl7-org:elm-types:r1}Code",
+                              "type" : "NamedTypeSpecifier"
+                           } ],
+                           "operand" : {
+                              "name" : "active",
+                              "libraryName" : "FC",
+                              "type" : "CodeRef"
+                           }
+                        } ]
+                     } ]
+                  }
+               }
+            }
+         }, {
             "name" : "Excluded",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
                "type" : "Or",
                "operand" : [ {
-                  "name" : "History of bilateral mastectomy",
-                  "type" : "ExpressionRef"
+                  "type" : "Or",
+                  "operand" : [ {
+                     "name" : "History of bilateral mastectomy",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "name" : "Breast Cancer Diagnosis",
+                     "type" : "ExpressionRef"
+                  } ]
                }, {
-                  "name" : "Breast Cancer Diagnosis",
+                  "name" : "History of high risk biopsy",
                   "type" : "ExpressionRef"
                } ]
             }

@@ -28,18 +28,18 @@ code "MG Breast Screening": '24606-6' from FC."LOINC" display 'MG Breast Screeni
 code "DBT Breast - bilateral screening": '72142-3' from FC."LOINC" display 'DBT Breast - bilateral screening' // AKA 3D mammogram
 concept "Mammography screening": { "MG Breast Screening", "DBT Breast - bilateral screening" } display 'Mammography screening'
 
-# High risk breast biopsy. The first two are sonsidered equivalent. The last two have no corresponding ICD10. 
+// High risk breast biopsy. The first two are sonsidered equivalent. The last two have no corresponding ICD10. 
 codesystem "ICD10": 'http://hl7.org/fhir/sid/icd-10'
 code "Atypical ductal hyperplasia of the breast": 'D05.10' from "ICD10" display 'Atypical ductal hyperplasia (ADH) of the breast'
 code "Atypical hyperplasia of lactiferous duct (disorder)": '427785007' from FC."SNOMEDCT" display 'Atypical hyperplasia of lactiferous duct (disorder)'
 code "Atypical lobular hyperplasia of breast (disorder)": '450697004' from FC."SNOMEDCT" display 'Atypical lobular hyperplasia of breast (disorder)'
 code "Lobular carcinoma in situ of breast (disorder)": '109888004' from FC."SNOMEDCT" display 'Lobular carcinoma in situ of breast (disorder)'
-concept "High risk biopsy": {
-	 "Atypical ductal hyperplasia of the breast",
-	 "Atypical hyperplasia of lactiferous duct (disorder)", 
-	 "Atypical lobular hyperplasia of breast (disorder)",
-	 "Lobular carcinoma in situ of breast (disorder)"
-	 }
+concept "High risk biopsy": { 
+	"Atypical ductal hyperplasia of the breast",
+	"Atypical hyperplasia of lactiferous duct (disorder)", 
+	"Atypical lobular hyperplasia of breast (disorder)",
+	"Lobular carcinoma in situ of breast (disorder)"
+}
 
 context Patient
 
@@ -54,17 +54,8 @@ define "Alive":
     else false
   end
 
-// define Alive:
-//   Patient.deceased = false
-
 define Active: 
   Patient.active = true
-
-// define "Age":
-//   AgeInYearsAt(start of "Measurement Period")
-
-// define "Age between 52 and 75":
-//   "Age" between 52 and 75
 
 define Woman:
   Patient.gender = 'female'
@@ -78,55 +69,35 @@ define "aged 50 to 74 years inclusive":
 define "Woman aged 50 to 74 years inclusive":
   Woman and "aged 50 to 74 years inclusive"
 
-// define "Is Recommendation Applicable":
-//   BCE."Is female"
-//   and "Age between 52 and 75"
-//   and not BCE."Has Appropriate Breast Cancer Screening"
-//   and not (BCE."Bilateral Mastectomy Performed")
-//   // and BCE."Is female"
-//   // and not BCE."Has Active Malignant Neoplasm"
-
-// define "Bilateral Mastectomy Procedure from elements":
-// BCE."Bilateral Mastectomy Procedure"
 define "Bilateral Mastectomy Procedure":
   [Procedure: Bx."Bilateral Mastectomy"] BilateralMastectomyPerformed // the procedure
     where BilateralMastectomyPerformed.status~'completed'
 
-// define "Bilateral Mastectomy Diagnosis from elements":
-// BCE."Bilateral Mastectomy Diagnosis"
 define "Bilateral Mastectomy Diagnosis":
   [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
-    // where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
   where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
 
 define "History of bilateral mastectomy":
   "Bilateral Mastectomy Performed"
 define "Bilateral Mastectomy Performed":
-  // ( 
-	// 	(
-	// 		exists ( "Right Mastectomy Diagnosis" )
-	// 		or exists ( "Right Mastectomy Procedure" )
-	// 	)
-	// 		and 
-	// 	(
-	// 		exists ( "Left Mastectomy Diagnosis" )
-	// 		or exists ( "Left Mastectomy Procedure" )
-	// 	)
-	// ) of
 	exists "Bilateral Mastectomy Diagnosis"
 	or exists "Bilateral Mastectomy Procedure"
 
-// define "Has Breast Cancer":
-//   BCE."Breast Cancer Diagnosis"
-// Exclusion - Breast Cancer Diagnosis
 define "Breast Cancer Diagnosis":
   exists ([Condition: Bx."Breast Cancer Diagnoses"] Dx
   where Dx.verificationStatus ~ FC."confirmed"
   and Dx.clinicalStatus ~ FC."active")
 
+define "History of high risk biopsy":
+	exists ([Condition: "High risk biopsy"] C
+		where C.verificationStatus ~ FC."confirmed"
+		and C.clinicalStatus ~ FC."active")
+
+
 define "Excluded":
   "History of bilateral mastectomy"
   or "Breast Cancer Diagnosis"
+  or "History of high risk biopsy"
 
 define "Mammography Performed":
 // This worked with the old valueset "Mammogram"
@@ -146,26 +117,11 @@ define function MostRecent(observations List<Observation>, asOf DateTime):
 define "Most Recent Mammogram":
   MostRecent("Mammography Performed", "Reference Date")
 
-
 define "Most recent mammogram":
   date from "Most Recent Mammogram".issued
 
 define "Months elapsed":
   months between "Most Recent Mammogram".issued and "Reference Date"
-
-// define "Rationale":
-//   Coalesce({
-//     'most recent mammogram performed on ' + ToString(date from BCE."Most Recent Mammogram".issued),
-//     'no mammogram on file'
-//   })
-
-// define "Mammogram status":
-// // if Count(X) > 0 then X[1] else 0
-//   if 
-//     "Woman aged 50 to 74 years inclusive" 
-//     and BCE."Mammogram within 24 months" 
-//   then 'mammogram up to date'
-//   else 'mammogram due'
 
 define "Mammogram within 24 months":
   exists "Mammography Performed" P
