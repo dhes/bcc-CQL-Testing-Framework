@@ -40,3 +40,13 @@ It sure looks like BI-RADS is used in all sorts of breast imaging, including 2D 
 Here is a [summary](https://loinc.org/search/?t=1&s=breast+screening) of all breast screening codes, some not applicable. 
 
 So now begins the process of retiring the mammogram value set for two specific loinc codes: 72142-3 and 24606-6. 
+
+02-02-2024
+
+ICD10 codes for high-risk breast biopsy. 
+
+>Atypical ductal hyperplasia (ADH) of the breast - D05.10,  Atypical hyperplasia of lactiferous duct (disorder) SCTID: 427785007
+>Atypical lobular hyperplasia of breast (disorder) - SCTID: 450697004 (no icd10 exists)
+> Lobular carcinoma in situ of breast (disorder) - SCTID: 109888004, (no ICD10)
+
+A quick look at vsac reveals no code groupings like this. 

@@ -24,10 +24,22 @@ parameter "Reference Date" DateTime
   // default  @2024-01-01T00:00:00-06:00
   default Now()
 
-codesystem "LOINC": 'http://loinc.org'
-code "MG Breast Screening": '24606-6' from "LOINC" display 'MG Breast Screening' // AKA 2D mammogram
-code "DBT Breast - bilateral screening": '72142-3' from "LOINC" display 'DBT Breast - bilateral screening' // AKA 3D mammogram
+code "MG Breast Screening": '24606-6' from FC."LOINC" display 'MG Breast Screening' // AKA 2D mammogram
+code "DBT Breast - bilateral screening": '72142-3' from FC."LOINC" display 'DBT Breast - bilateral screening' // AKA 3D mammogram
 concept "Mammography screening": { "MG Breast Screening", "DBT Breast - bilateral screening" } display 'Mammography screening'
+
+# High risk breast biopsy. The first two are sonsidered equivalent. The last two have no corresponding ICD10. 
+codesystem "ICD10": 'http://hl7.org/fhir/sid/icd-10'
+code "Atypical ductal hyperplasia of the breast": 'D05.10' from "ICD10" display 'Atypical ductal hyperplasia (ADH) of the breast'
+code "Atypical hyperplasia of lactiferous duct (disorder)": '427785007' from FC."SNOMEDCT" display 'Atypical hyperplasia of lactiferous duct (disorder)'
+code "Atypical lobular hyperplasia of breast (disorder)": '450697004' from FC."SNOMEDCT" display 'Atypical lobular hyperplasia of breast (disorder)'
+code "Lobular carcinoma in situ of breast (disorder)": '109888004' from FC."SNOMEDCT" display 'Lobular carcinoma in situ of breast (disorder)'
+concept "High risk biopsy": {
+	 "Atypical ductal hyperplasia of the breast",
+	 "Atypical hyperplasia of lactiferous duct (disorder)", 
+	 "Atypical lobular hyperplasia of breast (disorder)",
+	 "Lobular carcinoma in situ of breast (disorder)"
+	 }
 
 context Patient
 
