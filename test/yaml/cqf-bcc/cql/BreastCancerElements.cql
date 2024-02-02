@@ -14,9 +14,6 @@ include BreastCancerConcepts called Bx
 
 // for tests, fix the date
 // in production, make it Now()
-parameter "Reference Date" DateTime 
-  // default  @2024-01-01T00:00:00-06:00
-  default Now()
 
 // //Code '7771000' from "SNOMEDCT" //Left (qualifier value)'
 // code "Left (qualifier value)":
@@ -35,35 +32,35 @@ parameter "Reference Date" DateTime
 // code "Right breast":
 //   // '80248007 ' from FC."SNOMEDCT" display 'Left breast'
 
-context Patient
+// codesystem "LOINC": 'http://loinc.org'
+// code "MG Breast Screening": '24606-6' from "LOINC" display 'MG Breast Screening' // AKA 2D mammogram
+// code "DBT Breast - bilateral screening": '72142-3' from "LOINC" display 'DBT Breast - bilateral screening' // AKA 3D mammogram
+// concept "Mammography screening": { "MG Breast Screening", "DBT Breast - bilateral screening" } display 'Mammography screening'
+
+// context Patient
 
 // obsolescense candidate
 // define "Is female":
 //   // Patient.gender in Bx."Female Gender"
 //   Patient.gender = 'female'
 
-define Woman:
-  Patient.gender = 'female'
+// define "Todays date":
+//   "Reference Date"
 
-define "Todays date":
-  "Reference Date"
+// define BirthDate:
+//   ToString(Patient.birthDate)
 
-define BirthDate:
-  ToString(Patient.birthDate)
-
-define Age:
-  AgeInYearsAt("Reference Date")
-  // AgeInYearsAt(Today()) // production
+// define Age:
+//   AgeInYearsAt("Reference Date")
+//   // AgeInYearsAt(Today()) // production
 
 // These revisions align the CQL variables with USPSTF language
 // ...new...
 // CDS version
-define "aged 50 to 74 years inclusive": 
-  Age between 50 and 74 // `between` is inclusive
 
 // CQM version
-define "aged 52 to 74 years inclusive": // AKA "Initial Population"
-  Age between 52 and 74 // `between` is inclusive
+// define "aged 52 to 74 years inclusive": // AKA "Initial Population"
+//   Age between 52 and 74 // `between` is inclusive
 
 //...new...
 // ...CDS...
@@ -82,14 +79,14 @@ define "aged 52 to 74 years inclusive": // AKA "Initial Population"
 //   else if period is NOT null then period
 //   else null AS Interval<DateTime>
 
-define "Bilateral Mastectomy Procedure":
-  [Procedure: Bx."Bilateral Mastectomy"] BilateralMastectomyPerformed // the procedure
-    where BilateralMastectomyPerformed.status~'completed'
+// define "Bilateral Mastectomy Procedure":
+//   [Procedure: Bx."Bilateral Mastectomy"] BilateralMastectomyPerformed // the procedure
+//     where BilateralMastectomyPerformed.status~'completed'
 //  and Global."NormalizeInterval" ( BilateralMastectomyPerformed.relevantDatetime, BilateralMastectomyPerformed.relevantPeriod ) ends on or before
 // end of "Measurement Period"
 
-define "Bilateral Mastectomy Diagnosis":
-  [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
+// define "Bilateral Mastectomy Diagnosis":
+//   [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
     // where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
   // where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
   // and BilateralMastectomyHistory.clinicalStatus ~ FC. "active"
@@ -136,26 +133,7 @@ define "Bilateral Mastectomy Diagnosis":
 // WHERE RightMastectomy.prevalencePeriod starts on or before
 // end of "Measurement Period"
 
-define "Bilateral Mastectomy Performed":
-  // ( 
-	// 	(
-	// 		exists ( "Right Mastectomy Diagnosis" )
-	// 		or exists ( "Right Mastectomy Procedure" )
-	// 	)
-	// 		and 
-	// 	(
-	// 		exists ( "Left Mastectomy Diagnosis" )
-	// 		or exists ( "Left Mastectomy Procedure" )
-	// 	)
-	// ) of
-	exists "Bilateral Mastectomy Diagnosis"
-	or exists "Bilateral Mastectomy Procedure"
 
-// Exclusion - Breast Cancer Diagnosis
-define "Breast Cancer Diagnosis":
-  exists ([Condition: Bx."Breast Cancer Diagnoses"] Dx
-  where Dx.verificationStatus ~ FC."confirmed"
-  and Dx.clinicalStatus ~ FC."active")
 
 
 // define BreastCancerScreeningLOINCCodes: List<Code> {
@@ -163,22 +141,6 @@ define "Breast Cancer Diagnosis":
 //   Bx."DBT breast screening"
 // }
 
-define "Mammography Performed":
-// This worked with the old valueset "Mammogram"
-// [Observation: Bx."Mammography"] Mammogram
-// where O.status = 'final'
-  [Observation: Bx."Mammography screening"] O
-// where O.code in BreastCancerScreeningLOINCCodes
-where O.status = 'final'
-
-define function MostRecent(observations List<Observation>, asOf DateTime):
-  First(
-    observations O
-      sort by start of FC.ToInterval(issued)
-  )
-
-define "Most Recent Mammogram":
-  MostRecent("Mammography Performed", "Reference Date")
 
 // define "Mammography Performed Within 27 Months": // relative to end of measurment period
 // "Mammography Performed" P
@@ -191,9 +153,6 @@ define "Most Recent Mammogram":
 // define "Has Appropriate Breast Cancer Screening":
 // exists "Mammography Performed Within 27 Months"
 
-define "Mammogram within 24 months":
-  exists "Mammography Performed" P
-  where P.issued >= ("Reference Date" - 2 years)
 
 // define "Mammogram within 27 months": // this may not be all that useful
 //   exists "Mammography Performed" P

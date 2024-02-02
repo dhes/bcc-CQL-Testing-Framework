@@ -24,13 +24,6 @@
             "version" : "4.0.1"
          } ]
       },
-      "codeSystems" : {
-         "def" : [ {
-            "name" : "LOINC",
-            "id" : "http://loinc.org",
-            "accessLevel" : "Public"
-         } ]
-      },
       "valueSets" : {
          "def" : [ {
             "name" : "Bilateral Mastectomy",
@@ -44,37 +37,6 @@
             "name" : "Breast Cancer Diagnoses",
             "id" : "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1116.185",
             "accessLevel" : "Public"
-         } ]
-      },
-      "codes" : {
-         "def" : [ {
-            "name" : "MG Breast Screening",
-            "id" : "24606-6",
-            "display" : "MG Breast Screening",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "LOINC"
-            }
-         }, {
-            "name" : "DBT Breast - bilateral screening",
-            "id" : "72142-3",
-            "display" : "DBT Breast - bilateral screening",
-            "accessLevel" : "Public",
-            "codeSystem" : {
-               "name" : "LOINC"
-            }
-         } ]
-      },
-      "concepts" : {
-         "def" : [ {
-            "name" : "Mammography screening",
-            "display" : "Mammography screening",
-            "accessLevel" : "Public",
-            "code" : [ {
-               "name" : "MG Breast Screening"
-            }, {
-               "name" : "DBT Breast - bilateral screening"
-            } ]
          } ]
       }
    }
