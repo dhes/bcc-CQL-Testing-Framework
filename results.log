@@ -131,9 +131,9 @@ Ignoring potential external data file: /Users/danheslinga/bcc-CQL-Testing-Framew
 
   #yaml2fhir-config
     #dstu2
-      ✔ should be configured with valid resources, patient fields, and defaults (114ms)
+      ✔ should be configured with valid resources, patient fields, and defaults (111ms)
     #stu3
-      ✔ should be configured with valid resources, patient fields, and defaults (194ms)
+      ✔ should be configured with valid resources, patient fields, and defaults (204ms)
     #r4
       ✔ should be configured with valid resources, patient fields, and defaults
 
@@ -191,7 +191,7 @@ Ignoring potential external data file: /Users/danheslinga/bcc-CQL-Testing-Framew
       ✔ should throw an error for an invalid property
 
 
-  78 passing (746ms)
+  78 passing (729ms)
   89 failing
 
   1) BreastCancerScreeningCDS_v0.1.0

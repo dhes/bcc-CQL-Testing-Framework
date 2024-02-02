@@ -36,7 +36,6 @@ data:
   method: SNOMEDCT#24623002 Screening mammography (procedure)
   note:
   - text: BIRADS Category 2 (Benign)
-
 -
   $iterate: *bilateralMastectomyCondition
 

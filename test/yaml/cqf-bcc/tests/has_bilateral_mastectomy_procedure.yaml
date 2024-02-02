@@ -29,7 +29,7 @@ data:
   status: final
   category: http://terminology.hl7.org/CodeSystem/observation-category#imaging Imaging
   code: LOINC#24606-6 MG Breast Screening
-  issued: 2023-01-01T00:00:00+00:00
+  issued: 2021-01-01T00:00:00+00:00
   valueCodeableConcept: http://hl7.org/fhir/us/breast-radiology/CodeSystem/BiRadsAssessmentCategoriesCS#Category2 Category 2 (Benign)
   interpretation: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#N Normal
   bodySite: SNOMEDCT#63762007 Both breasts (body structure)
