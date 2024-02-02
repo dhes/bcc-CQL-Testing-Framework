@@ -422,7 +422,38 @@
                      }
                   }
                } ],
-               "relationship" : [ ]
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equivalent",
+                  "signature" : [ {
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
+                  }, {
+                     "name" : "{urn:hl7-org:elm-types:r1}Concept",
+                     "type" : "NamedTypeSpecifier"
+                  } ],
+                  "operand" : [ {
+                     "name" : "ToConcept",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "verificationStatus",
+                        "scope" : "BilateralMastectomyHistory",
+                        "type" : "Property"
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
+                     "signature" : [ {
+                        "name" : "{urn:hl7-org:elm-types:r1}Code",
+                        "type" : "NamedTypeSpecifier"
+                     } ],
+                     "operand" : {
+                        "name" : "confirmed",
+                        "libraryName" : "FC",
+                        "type" : "CodeRef"
+                     }
+                  } ]
+               }
             }
          }, {
             "name" : "Bilateral Mastectomy Performed",

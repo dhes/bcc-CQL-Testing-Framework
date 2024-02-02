@@ -85,7 +85,7 @@ define "Bilateral Mastectomy Procedure":
 define "Bilateral Mastectomy Diagnosis":
   [Condition: Bx."History of bilateral mastectomy"] BilateralMastectomyHistory // the condition
     // where BilateralMastectomyHistory.clinicalStatus in FC."Active Condition"
-  // where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
+  where BilateralMastectomyHistory.verificationStatus ~ FC."confirmed"
 
 define "History of bilateral mastectomy":
   "Bilateral Mastectomy Performed"
