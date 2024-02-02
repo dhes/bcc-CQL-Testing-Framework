@@ -1,7 +1,7 @@
-# This patient is up to date for one more day. 
-# This case tests the inner boundary of two years. 
+# This case tests the boundaries of overdue. 
+# The most recent mammogram was done exactly two years ago. 
 ---
-name: up_to_date
+name: overdue_by_one_day
 
 data:
 -
@@ -12,24 +12,23 @@ data:
   active: true
   deceasedBoolean: false
 -
-# CXR
+# CXR i.e. a non-mammogram observation
   resourceType: Observation
   status: final
   category: [OBS-CAT#imaging]
   code: http://loinc.org#18782-3 Radiology Study observation (narrative)
-  issued: 2019-02-03T19:43:30.000Z
+  issued: 2023-01-01T19:43:30.000Z
   valueString: 'LINES AND TUBES: None.\n LUNGS AND PLEURA:\n Clear lungs. Normal pulmonary
     vascularity.\n No pleural effusion.\n No pneumothorax.\n HEART, MEDIASTINUM AND
     HILA:\n Heart is normal in size.\n Normal mediastinal and hilar contour.\n BONES
     AND SOFT TISSUES:\n No acute abnormality.\n'
 -
-# up-to-date-mammogram
+# overdue mammogram
   resourceType: Observation
   status: final
   category: http://terminology.hl7.org/CodeSystem/observation-category#imaging Imaging
   code: LOINC#24606-6 MG Breast Screening
-  # effectiveDateTime: 2024-01-01T00:00:00+00:00
-  issued: 2022-01-02T00:00:00+00:00
+  issued: 2022-01-01T00:00:00+00:00
   valueCodeableConcept: http://hl7.org/fhir/us/breast-radiology/CodeSystem/BiRadsAssessmentCategoriesCS#Category2 Category 2 (Benign)
   interpretation: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#N Normal
   bodySite: SNOMEDCT#63762007 Both breasts (body structure)
@@ -38,6 +37,4 @@ data:
   - text: BIRADS Category 2 (Benign)
 
 results:
-  Due for screening mammogram: false
-
-
+  Due for screening mammogram: true
