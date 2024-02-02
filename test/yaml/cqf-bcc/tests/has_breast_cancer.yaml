@@ -4,6 +4,7 @@
 name: has_breast_cancer
 externalData:
 - reusable_breast_cancer_conditions
+- reusable_overdue_by_one_year
 data:
 -
   resourceType: Patient
@@ -12,30 +13,8 @@ data:
   gender: female
   active: true
   deceasedBoolean: false
--
-# CXR i.e. a non-mammogram observation
-  resourceType: Observation
-  status: final
-  category: [OBS-CAT#imaging]
-  code: http://loinc.org#18782-3 Radiology Study observation (narrative)
-  issued: 2023-01-01T19:43:30.000Z
-  valueString: 'LINES AND TUBES: None.\n LUNGS AND PLEURA:\n Clear lungs. Normal pulmonary
-    vascularity.\n No pleural effusion.\n No pneumothorax.\n HEART, MEDIASTINUM AND
-    HILA:\n Heart is normal in size.\n Normal mediastinal and hilar contour.\n BONES
-    AND SOFT TISSUES:\n No acute abnormality.\n'
--
-# overdue mammogram
-  resourceType: Observation
-  status: final
-  category: http://terminology.hl7.org/CodeSystem/observation-category#imaging Imaging
-  code: LOINC#24606-6 MG Breast Screening
-  issued: 2021-01-01T00:00:00+00:00
-  valueCodeableConcept: http://hl7.org/fhir/us/breast-radiology/CodeSystem/BiRadsAssessmentCategoriesCS#Category2 Category 2 (Benign)
-  interpretation: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation#N Normal
-  bodySite: SNOMEDCT#63762007 Both breasts (body structure)
-  method: SNOMEDCT#24623002 Screening mammography (procedure)
-  note:
-  - text: BIRADS Category 2 (Benign)
+- 
+  $import: *overdueByOneYear
 -
   $iterate: *breastCancerDiagnosis
 
