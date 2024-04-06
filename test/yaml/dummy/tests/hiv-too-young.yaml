@@ -1,0 +1,16 @@
+# This patient would be due for HIV screening if they were one day older
+# This test assumes a reference date of 2024-01-01
+---
+name: hiv-too-young
+data:
+-
+  resourceType: Patient
+  name: Absolutely Nobody
+  id: hiv-too-young
+  birthDate: 2011-01-02
+  gender: female
+  active: true
+  deceasedBoolean: false
+
+results:
+  Needs HIV testing: false
