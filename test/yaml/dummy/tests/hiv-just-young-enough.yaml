@@ -1,0 +1,17 @@
+# This will patient would be due for HIV screening for one day. 
+# One day older and they will turn 65. 
+# This test uses a reference date of 2024-01-01.
+---
+name: hiv-just-young-enough
+data:
+-
+  resourceType: Patient
+  name: Absolutely Nobody
+  id: hiv-just-young-enough
+  birthDate: 1959-01-02
+  gender: female
+  active: true
+  deceasedBoolean: false
+
+results:
+  Needs HIV testing: true
