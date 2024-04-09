@@ -1,0 +1,29 @@
+# This will patient would be due for HIV screening for one day. 
+# One day older and they will turn 65. 
+# This test uses a reference date of 2024-01-01.
+---
+name: hiv-pregnant
+data:
+-
+  resourceType: Patient
+  name: Absolutely Nobody
+  id: hiv-pregnant
+  birthDate: 1985-01-01
+  gender: female
+  active: true
+  deceasedBoolean: false
+- 
+  resourceType: Observation
+  code: 
+    coding:
+      - system: SNOMED
+        code: 77386006
+        display: Pregnancy (finding)
+      - system: LOINC
+        code: 82810-3
+        display: Pregnancy status
+  valueBoolean: true
+  effectiveDateTime: 2024-04-09
+
+results:
+  Needs HIV testing: true
